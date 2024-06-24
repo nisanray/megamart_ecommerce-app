@@ -4,10 +4,11 @@ import 'package:megamart/views/customers/nav_screens/widgets/banner_widget.dart'
 import 'package:megamart/views/customers/nav_screens/widgets/category_text.dart';
 import 'package:megamart/views/customers/nav_screens/widgets/search_input_widget.dart';
 import 'package:megamart/views/customers/nav_screens/widgets/welcome_text.dart';
-import '/utils/custom_textfields.dart';
+import '/utils/custom_text_form_fields.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  static const routeName = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,13 @@ class HomeScreen extends StatelessWidget {
           child: SearchInputWidget(),
         ),
         BannerWidget(),
-        CategoryText()
+        CategoryText(),
+        Container(
+          height: 100,
+          width: 100,
+          color: Colors.blueAccent.shade700,
+          child: Center(child: Text("dshfsfhsfhdsjfn",style: TextStyle(color: Colors.white),)),
+        )
 
       ],
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:megamart/views/customers/nav_screens/account_screen.dart';
 import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
 import 'package:megamart/views/customers/nav_screens/category_screen.dart';
@@ -16,15 +15,44 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _pageindex = 0;
-  List<Widget> _pages = [
-    HomeScreen(),
-    CategoryScreen(),
-    StoreScreen(),
-    CartScreen(),
-    SearchScreen(),
-    AccountScreen()
-  ];
+  String _currentPage = "Home";
+  late Widget _selectedItem;
+  late String _selectedRoute;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedItem = HomeScreen();
+    _selectedRoute = HomeScreen.routeName;
+  }
+
+  void screenSelector(String route) {
+    setState(() {
+      _selectedRoute = route;
+      switch (route) {
+        case HomeScreen.routeName:
+          _selectedItem = HomeScreen();
+          break;
+        case CategoryScreen.routeName:
+          _selectedItem = CategoryScreen();
+          break;
+        case CartScreen.routeName:
+          _selectedItem = CartScreen();
+          break;
+        case AccountScreen.routeName:
+          _selectedItem = AccountScreen();
+          break;
+        case StoreScreen.routeName:
+          _selectedItem = StoreScreen();
+          break;
+        case SearchScreen.routeName:
+          _selectedItem = SearchScreen();
+          break;
+        default:
+          _selectedItem = HomeScreen();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +60,11 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _pageindex,
-          onTap: (value) {
+          currentIndex: _pages.keys.toList().indexOf(_currentPage),
+          onTap: (index) {
             setState(() {
-              _pageindex = value;
+              _currentPage = _pages.keys.toList()[index];
+              screenSelector(_pages[_currentPage]!);
             });
           },
           unselectedItemColor: Colors.deepPurpleAccent.shade400,
@@ -67,8 +96,17 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ],
         ),
-        body: _pages[_pageindex],
+        body: _selectedItem,
       ),
     );
   }
+
+  final Map<String, String> _pages = {
+    "Home": HomeScreen.routeName,
+    "Categories": CategoryScreen.routeName,
+    "Store": StoreScreen.routeName,
+    "Cart": CartScreen.routeName,
+    "Search": SearchScreen.routeName,
+    "Account": AccountScreen.routeName,
+  };
 }

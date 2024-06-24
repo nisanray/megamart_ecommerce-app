@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:megamart/views/customers/auth/login_screen.dart';
+import 'package:megamart/views/customers/auth/register_screen.dart';
 import 'package:megamart/views/customers/main_screen.dart';
 
 import 'firebase_options.dart';
@@ -45,7 +47,9 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'Quicksand-Light'
       ),
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      // home: MainScreen(),
+      home: LogInScreen(),
+      // home: CustomerRegistrationScreen(),
     );
   }
 }
