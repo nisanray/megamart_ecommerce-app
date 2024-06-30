@@ -49,19 +49,48 @@ class AuthController {
 
 
 
-  Future<String> signupCustomer(String email, String fullName, String phoneNumber, String password,Uint8List image) async {
+  Future<String> signupCustomer(String email, String fullName, String phoneNumber, String password, Uint8List image) async {
     String res = 'Some error occurred';
     try {
-      if (email.isNotEmpty && fullName.isNotEmpty && phoneNumber.isNotEmpty && password.isNotEmpty && image!= null) {
+      if (email.isNotEmpty && fullName.isNotEmpty && phoneNumber.isNotEmpty && password.isNotEmpty && image != null) {
+        // Create user in Firebase Authentication
         UserCredential cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+
+        // Upload profile picture to Firebase Storage
         String profilePictureUrl = await _uploadProfilePictureToStorage(image);
+
+        // Set additional user data in Firestore
         await _firestore.collection('customers').doc(cred.user!.uid).set({
           'email': email,
           'fullName': fullName,
           'phoneNumber': phoneNumber,
           'customerId': cred.user!.uid,
-          'address': "",
-          'profilePicture' : profilePictureUrl
+          'address': "", // You can add the address here or update later
+          'profile': {
+            'phone': phoneNumber,
+            'address': "", // Add address here or update later
+            'dateOfBirth': null, // Add date of birth if needed
+            'profilePicture': profilePictureUrl,
+            'gender': "", // Add gender if needed
+            'loyaltyPoints': 0, // Initial loyalty points
+            'wishlist': [], // Array to store wishlist items
+            'orderHistory': [], // Array to store order history
+            'dateJoined': Timestamp.now(),
+            'lastLogin': Timestamp.now(),
+            'emergencyContact': {
+              'name': "",
+              'phone': "",
+            },
+            'socialMedia': {
+              'linkedin': "",
+              'twitter': "",
+              'facebook': "",
+            },
+            'bio': "", // Add bio if needed
+            'additionalInfo': {}, // Additional information if needed
+          },
+          'createdAt': Timestamp.now(),
+          'updatedAt': Timestamp.now(),
         });
 
         res = 'Success';
