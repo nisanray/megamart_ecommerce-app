@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:megamart/views/customers/auth/login_screen.dart';
 import 'package:megamart/views/customers/auth/register_screen.dart';
 import 'package:megamart/views/customers/main_screen.dart';
+import 'package:megamart/views/settings/settings_view.dart';
 
 import 'firebase_options.dart';
 
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: MainScreen(),
+      // home: SettingsView(),
       home: LogInScreen(),
       // home: CustomerRegistrationScreen(),
     );

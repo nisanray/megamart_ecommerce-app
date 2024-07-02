@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:megamart/controllers/customer/auth/auth_controller.dart';
+import 'package:megamart/controllers/auth_controller.dart';
 import 'package:megamart/utils/circular_progress_indicator.dart';
 import 'package:megamart/utils/colors.dart';
 import 'package:megamart/utils/custom_button.dart';

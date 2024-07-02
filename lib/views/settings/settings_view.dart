@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'account_info_update.dart';
+// import 'account_information_view.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -16,7 +18,10 @@ class SettingsView extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             _buildSettingsOption(context, 'Account Information', () {
-              // Add your navigation or functionality here
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AccountInformationView()),
+              );
             }),
             const SizedBox(height: 1),
             _buildSettingsOption(context, 'Address Book', () {

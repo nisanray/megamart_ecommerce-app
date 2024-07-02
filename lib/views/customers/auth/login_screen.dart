@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:megamart/controllers/customer/auth/auth_controller.dart';
+import 'package:megamart/controllers/auth_controller.dart';
 import 'package:megamart/utils/colors.dart';
 import 'package:megamart/utils/custom_button.dart';
 import 'package:megamart/utils/custom_text_form_fields.dart';

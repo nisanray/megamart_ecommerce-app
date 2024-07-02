@@ -65,10 +65,15 @@ class AuthController {
           'fullName': fullName,
           'phoneNumber': phoneNumber,
           'customerId': cred.user!.uid,
-          'address': "", // You can add the address here or update later
+          'address': {
+            'division' : "",
+            'district' : "",
+            'upazilla' : "",
+            'area'     : ""
+          }, // You can add the address here or update later
           'profile': {
             'phone': phoneNumber,
-            'address': "", // Add address here or update later
+             // Add address here or update later
             'dateOfBirth': null, // Add date of birth if needed
             'profilePicture': profilePictureUrl,
             'gender': "", // Add gender if needed

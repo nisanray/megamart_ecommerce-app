@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'location_models.dart';
+import '/utils/location/location_models.dart'; // Adjust the import path as necessary
 
 class LocationService {
   Future<List<Division>> loadDivisions() async {

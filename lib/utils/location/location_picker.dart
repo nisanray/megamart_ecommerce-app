@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:megamart_vendor/utils/custom_text_fields.dart';
-import '/utils/location/location_models.dart';
-import '/utils/location/location_service.dart';
+import 'location_models.dart';
+import 'location_service.dart';
 
 class LocationPicker extends StatefulWidget {
+  final ValueChanged<String?>? onAddressChanged;
+  final Function(String?, String?, String?, String?)? onLocationChanged; // Callback to update location info
+
+  LocationPicker({Key? key, this.onAddressChanged, this.onLocationChanged, String? initialDivision, String? initialDistrict, String? initialUpazila, String? initialArea}) : super(key: key);
+
   @override
   _LocationPickerState createState() => _LocationPickerState();
 }
@@ -19,9 +22,10 @@ class _LocationPickerState extends State<LocationPicker> {
   List<District> filteredDistricts = [];
   List<Upazila> filteredUpazilas = [];
 
-  String? selectedDivision;
-  String? selectedDistrict;
-  String? selectedUpazila;
+  String? selectedDivisionId;
+  String? selectedDistrictId;
+  String? selectedUpazilaId;
+  String? selectedArea; // Add selected area
 
   @override
   void initState() {
@@ -36,28 +40,68 @@ class _LocationPickerState extends State<LocationPicker> {
     setState(() {});
   }
 
-  void onDivisionChanged(String? value) {
+  void onDivisionChanged(String? id) {
     setState(() {
-      selectedDivision = value;
-      selectedDistrict = null;
-      selectedUpazila = null;
-      filteredDistricts = districts.where((district) => district.divisionId == value).toList();
+      selectedDivisionId = id;
+      selectedDistrictId = null;
+      selectedUpazilaId = null;
+      filteredDistricts = districts.where((district) => district.divisionId == id).toList();
       filteredUpazilas = [];
+      selectedArea = null; // Reset selected area when division changes
+      widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
+      widget.onAddressChanged?.call(''); // Clear address when division changes
     });
   }
 
-  void onDistrictChanged(String? value) {
+  void onDistrictChanged(String? id) {
     setState(() {
-      selectedDistrict = value;
-      selectedUpazila = null;
-      filteredUpazilas = upazilas.where((upazila) => upazila.districtId == value).toList();
+      selectedDistrictId = id;
+      selectedUpazilaId = null;
+      filteredUpazilas = upazilas.where((upazila) => upazila.districtId == id).toList();
+      selectedArea = null; // Reset selected area when district changes
+      widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
+      // Update address based on district selection
+      if (filteredDistricts.isNotEmpty) {
+        District selectedDistrictObject =
+        filteredDistricts.firstWhere((element) => element.id == id);
+        widget.onAddressChanged?.call(selectedDistrictObject.name);
+      }
     });
   }
 
-  void onUpazilaChanged(String? value) {
+  void onUpazilaChanged(String? id) {
     setState(() {
-      selectedUpazila = value;
+      selectedUpazilaId = id;
+      selectedArea = null; // Reset selected area when upazila changes
+      widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
+      // Update address based on upazila selection
+      if (filteredUpazilas.isNotEmpty) {
+        Upazila selectedUpazilaObject =
+        filteredUpazilas.firstWhere((element) => element.id == id);
+        widget.onAddressChanged?.call(selectedUpazilaObject.name);
+      }
     });
+  }
+
+  String get selectedDivisionName {
+    if (selectedDivisionId != null) {
+      return divisions.firstWhere((division) => division.id == selectedDivisionId).name;
+    }
+    return '';
+  }
+
+  String get selectedDistrictName {
+    if (selectedDistrictId != null) {
+      return districts.firstWhere((district) => district.id == selectedDistrictId).name;
+    }
+    return '';
+  }
+
+  String get selectedUpazilaName {
+    if (selectedUpazilaId != null) {
+      return upazilas.firstWhere((upazila) => upazila.id == selectedUpazilaId).name;
+    }
+    return '';
   }
 
   @override
@@ -67,7 +111,7 @@ class _LocationPickerState extends State<LocationPicker> {
       children: [
         _buildDropdown(
           label: 'Select Division',
-          value: selectedDivision,
+          value: selectedDivisionId,
           items: divisions.map<DropdownMenuItem<String>>((division) {
             return DropdownMenuItem<String>(
               value: division.id,
@@ -79,7 +123,7 @@ class _LocationPickerState extends State<LocationPicker> {
         SizedBox(height: 16),
         _buildDropdown(
           label: 'Select District',
-          value: selectedDistrict,
+          value: selectedDistrictId,
           items: filteredDistricts.map<DropdownMenuItem<String>>((district) {
             return DropdownMenuItem<String>(
               value: district.id,
@@ -91,7 +135,7 @@ class _LocationPickerState extends State<LocationPicker> {
         SizedBox(height: 16),
         _buildDropdown(
           label: 'Select Upazila',
-          value: selectedUpazila,
+          value: selectedUpazilaId,
           items: filteredUpazilas.map<DropdownMenuItem<String>>((upazila) {
             return DropdownMenuItem<String>(
               value: upazila.id,
@@ -99,6 +143,16 @@ class _LocationPickerState extends State<LocationPicker> {
             );
           }).toList(),
           onChanged: onUpazilaChanged,
+        ),
+        SizedBox(height: 16),
+        TextFormField(
+          decoration: InputDecoration(labelText: 'Enter Area'),
+          onChanged: (value) {
+            setState(() {
+              selectedArea = value;
+              widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
+            });
+          },
         ),
       ],
     );
@@ -118,8 +172,7 @@ class _LocationPickerState extends State<LocationPicker> {
           constraints: BoxConstraints(maxWidth: 500),
           child: DropdownButtonFormField<String>(
             decoration: InputDecoration(
-              fillColor: Colors.blue[50],filled: true,
-              label: Text(label,style: TextStyle(color: Colors.black),),
+              labelText: label,
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black),
