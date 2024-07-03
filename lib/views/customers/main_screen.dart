@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megamart/views/customers/nav_screens/account_screen.dart';
 import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
@@ -8,53 +7,71 @@ import 'package:megamart/views/customers/nav_screens/search_screen.dart';
 import 'package:megamart/views/customers/nav_screens/store_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  static final GlobalKey<MainScreenState> mainScreenKey = GlobalKey<MainScreenState>();
+
+  final int initialIndex;
+
+  const MainScreen({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  MainScreenState createState() => MainScreenState();
+
+  void navigateToCategoryScreen() {
+    mainScreenKey.currentState?.navigateToCategoryScreen();
+  }
 }
 
-class _MainScreenState extends State<MainScreen> {
-  String _currentPage = "Home";
+class MainScreenState extends State<MainScreen> {
   late Widget _selectedItem;
+  late int _selectedIndex;
 
   @override
   void initState() {
     super.initState();
-    _selectedItem = HomeScreen();
+    _selectedIndex = widget.initialIndex;
+    _setSelectedItem(_selectedIndex);
   }
 
-  void screenSelector(String route) {
+  void _onItemTapped(int index) {
     setState(() {
-      switch (route) {
-        case HomeScreen.routeName:
-          _selectedItem = HomeScreen();
-          _currentPage = "Home";
-          break;
-        case CategoryScreen.routeName:
-          _selectedItem = CategoryScreen();
-          _currentPage = "Categories";
-          break;
-        case CartScreen.routeName:
-          _selectedItem = CartScreen(onContinueShopping: screenSelector);
-          _currentPage = "Cart";
-          break;
-        case AccountScreen.routeName:
-          _selectedItem = AccountScreen();
-          _currentPage = "Account";
-          break;
-        case StoreScreen.routeName:
-          _selectedItem = StoreScreen();
-          _currentPage = "Store";
-          break;
-        case SearchScreen.routeName:
-          _selectedItem = SearchScreen();
-          _currentPage = "Search";
-          break;
-        default:
-          _selectedItem = HomeScreen();
-          _currentPage = "Home";
-      }
+      _selectedIndex = index;
+      _setSelectedItem(index);
+    });
+  }
+
+  void _setSelectedItem(int index) {
+    switch (index) {
+      case 0:
+        _selectedItem = HomeScreen();
+        break;
+      case 1:
+        _selectedItem = CategoryScreen();
+        break;
+      case 2:
+        _selectedItem = StoreScreen();
+        break;
+      case 3:
+        _selectedItem = CartScreen();
+        break;
+      case 4:
+        _selectedItem = SearchScreen();
+        break;
+      case 5:
+        _selectedItem = AccountScreen();
+        break;
+      default:
+        _selectedItem = HomeScreen();
+    }
+  }
+
+  void _handleContinueShopping(String routeName) {
+    print('Continue shopping action triggered for route: $routeName');
+  }
+
+  void navigateToCategoryScreen() {
+    setState(() {
+      _selectedIndex = 1; // Index for CategoryScreen
+      _setSelectedItem(1);
     });
   }
 
@@ -64,15 +81,13 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _pages.keys.toList().indexOf(_currentPage),
-          onTap: (index) {
-            screenSelector(_pages[_pages.keys.toList()[index]]!);
-          },
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
           unselectedItemColor: Colors.deepPurpleAccent.shade400,
           selectedItemColor: Colors.amberAccent.shade700,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home),
+              icon: Icon(Icons.home),
               label: "Home",
             ),
             BottomNavigationBarItem(
@@ -88,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
               label: "Cart",
             ),
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.search),
+              icon: Icon(Icons.search),
               label: "Search",
             ),
             BottomNavigationBarItem(
@@ -101,13 +116,4 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-
-  final Map<String, String> _pages = {
-    "Home": HomeScreen.routeName,
-    "Categories": CategoryScreen.routeName,
-    "Store": StoreScreen.routeName,
-    "Cart": CartScreen.routeName,
-    "Search": SearchScreen.routeName,
-    "Account": AccountScreen.routeName,
-  };
 }

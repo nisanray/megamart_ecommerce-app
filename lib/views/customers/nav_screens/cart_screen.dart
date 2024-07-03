@@ -4,13 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:megamart/utils/custom_button.dart';
 
 import '../../../utils/quantity_selector.dart';
+import '../main_screen.dart';
 import 'category_screen.dart';
 // import 'quantity_selector.dart'; // Import the QuantitySelector widget
 
 class CartScreen extends StatefulWidget {
-  final Function(String) onContinueShopping;
 
-  const CartScreen({super.key, required this.onContinueShopping});
+  CartScreen({super.key, });
   static const routeName = '/cart';
 
   @override
@@ -207,7 +207,13 @@ class _CartScreenState extends State<CartScreen> {
             textColor: Colors.white,
             maxwidth: 600,
             onTap: () {
-              widget.onContinueShopping(CategoryScreen.routeName);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MainScreen(initialIndex: 1),
+                ),
+              );
+
             },
           ),
         ],

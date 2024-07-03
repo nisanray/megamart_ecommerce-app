@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
 
 import '../../../utils/quantity_selector.dart';
-
-
+import '../main_screen.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final QueryDocumentSnapshot product;
@@ -96,7 +96,51 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(productName),
+        title: Row(
+          children: [
+            // IconButton(
+            //   icon: Icon(Icons.arrow_back),
+            //   onPressed: () => Navigator.pop(context),
+            // ),
+            Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.share),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainScreen(initialIndex: 3),
+                  ),
+                );
+
+              },
+            ),
+            PopupMenuButton<String>(
+              onSelected: (String result) {},
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem<String>(
+                  value: 'Option 1',
+                  child: Text('Option 1'),
+                ),
+                PopupMenuItem<String>(
+                  value: 'Option 2',
+                  child: Text('Option 2'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
@@ -105,87 +149,231 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (productImageUrl.isNotEmpty)
-              Center(
-                child: Image.network(productImageUrl, height: 250, fit: BoxFit.fitHeight),
+            Container(
+              height: MediaQuery.of(context).size.height*0.35,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Center(child: Image.network(productImageUrl, fit: BoxFit.fitHeight)),
+                ],
               ),
-            SizedBox(height: 20),
-            if (fixedFields.isNotEmpty) ...[
-              Text('Product Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ...fixedFields.map((field) => _buildField(field)),
-              SizedBox(height: 20),
-            ],
-            if (additionalFields.isNotEmpty) ...[
-              Text('Additional Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ...additionalFields.map((field) => _buildField(field)),
-              SizedBox(height: 20),
-            ],
-            FutureBuilder<DocumentSnapshot>(
-              future: FirebaseFirestore.instance.collection('vendors').doc(vendorId).get(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (snapshot.hasError) {
-                  return Text('Error loading vendor info');
-                }
-                if (!snapshot.hasData || !snapshot.data!.exists) {
-                  return Text('Vendor not found');
-                }
-
-                var vendorData = snapshot.data!.data() as Map<String, dynamic>;
-                var vendorName = vendorData['name'] ?? 'Unknown';
-                var storeName = vendorData['storeName'] ?? 'Unknown';
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Vendor: $vendorName', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text('Store: $storeName'),
-                  ],
-                );
-              },
             ),
-            SizedBox(height: 20),
-            Text('Select Quantity', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-            QuantitySelector(
-              initialQuantity: _selectedQuantity,
-              onQuantityChanged: (newQuantity) {
-                setState(() {
-                  _selectedQuantity = newQuantity;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle Buy Now action
-                  },
-                  child: Text('Buy Now', style: TextStyle(color: Colors.white)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: _currentUser == null ? null : () {
-                    _addToCart(context);
-                  },
-                  child: Text('Add to Cart', style: TextStyle(color: Colors.white)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ],
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    productName,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('\$20.00',style: TextStyle(fontSize: 30),),
+                      SizedBox(width: 10),
+                      Text(
+                        '\$25.00',
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.red,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text('1K Sold'),
+                      SizedBox(width: 10),
+                      Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),border: Border.all(color: Colors.grey)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                            child: Text('♥50'),
+                          )),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text('Rating: 4.5 stars'),
+                  SizedBox(height: 8),
+                  Text('Delivery Time: 3-5 days'),
+                  SizedBox(height: 8),
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.store_mall_directory_outlined),
+                        Text(' Store Name (Seller Review: 4.5 stars)'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Variations',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add variations here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Delivery',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add delivery info here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Service',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add service info here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Ratings and Reviews',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add ratings and reviews here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'QNA',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add QNA section here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Divider(),
+            TextButton(
+              onPressed: () {},
+              child: Text('Ask Question'),
+            ),
+            Divider(),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Store Info',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add store info here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Product Details',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add product details here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Recommended Products',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  // Add recommended products here
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(onPressed: () {
+
+              }, icon: Icon(Icons.store_mall_directory_outlined)),
+              IconButton(onPressed: () {
+
+              }, icon: Icon(Icons.chat_outlined)),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Buy Now'),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Add to Cart'),
+              ),
+            ],
+          ),
         ),
       ),
     );
