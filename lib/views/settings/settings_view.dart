@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:megamart/views/customers/auth/login_screen.dart';
 import 'account_info_update.dart';
-// import 'account_information_view.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -54,7 +54,7 @@ class SettingsView extends StatelessWidget {
             const SizedBox(height: 20),
             InkWell(
               onTap: () {
-                // Add your logout functionality here
+                _showLogoutConfirmation(context);
               },
               child: Container(
                 width: MediaQuery.sizeOf(context).width,
@@ -84,5 +84,39 @@ class SettingsView extends StatelessWidget {
         child: Text(title),
       ),
     );
+  }
+
+  void _showLogoutConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('Are you sure you want to logout?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                _logout(context);
+              },
+              child: Text('Logout'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _logout(BuildContext context) {
+    // Add your logout logic here
+    // For example, clear user data, navigate to login screen, etc.
+
+    // Example:
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LogInScreen(),));
   }
 }

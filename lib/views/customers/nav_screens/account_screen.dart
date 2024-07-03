@@ -66,12 +66,13 @@ class _AccountScreenState extends State<AccountScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 3,),
             Container(
               color: Colors.white,
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  SizedBox(height: 10),
+                  // SizedBox(height: ),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //   children: [
@@ -149,8 +150,11 @@ class _AccountScreenState extends State<AccountScreen> {
             Container(
               child: Column(
                 children: [
-                  Image.asset('assets/promo.jpg'),
-                  SizedBox(height: 16),
+                  SizedBox(height: 3),
+                  Container(
+                    width: MediaQuery.sizeOf(context).width,
+                      child: Image.asset('assets/promo/promo.jpg',fit: BoxFit.cover,)),
+                  SizedBox(height: 3),
                   Container(
                     padding: EdgeInsets.all(15),
                     width: MediaQuery.sizeOf(context).width,
@@ -216,7 +220,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     ],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 3),
                   Container(
                     color: Colors.white,
                     child: ListTile(
@@ -225,7 +229,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       subtitle: Text('Delivered > Your package has been delivered. Tap here to share a review'),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 3),
                   Container(
                     padding: EdgeInsets.all(15),
                     color: Colors.white,
@@ -250,7 +254,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                   ),
             SizedBox(
-              height: 15,
+              height: 3,
             ),
             Container(
               padding: EdgeInsets.all(15),
@@ -278,9 +282,6 @@ class _AccountScreenState extends State<AccountScreen> {
                       },)
                     ],
                   ),
-SizedBox(
-  height: 25,
-),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

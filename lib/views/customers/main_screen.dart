@@ -17,39 +17,43 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String _currentPage = "Home";
   late Widget _selectedItem;
-  late String _selectedRoute;
 
   @override
   void initState() {
     super.initState();
     _selectedItem = HomeScreen();
-    _selectedRoute = HomeScreen.routeName;
   }
 
   void screenSelector(String route) {
     setState(() {
-      _selectedRoute = route;
       switch (route) {
         case HomeScreen.routeName:
           _selectedItem = HomeScreen();
+          _currentPage = "Home";
           break;
         case CategoryScreen.routeName:
           _selectedItem = CategoryScreen();
+          _currentPage = "Categories";
           break;
         case CartScreen.routeName:
-          _selectedItem = CartScreen();
+          _selectedItem = CartScreen(onContinueShopping: screenSelector);
+          _currentPage = "Cart";
           break;
         case AccountScreen.routeName:
           _selectedItem = AccountScreen();
+          _currentPage = "Account";
           break;
         case StoreScreen.routeName:
           _selectedItem = StoreScreen();
+          _currentPage = "Store";
           break;
         case SearchScreen.routeName:
           _selectedItem = SearchScreen();
+          _currentPage = "Search";
           break;
         default:
           _selectedItem = HomeScreen();
+          _currentPage = "Home";
       }
     });
   }
@@ -62,14 +66,11 @@ class _MainScreenState extends State<MainScreen> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _pages.keys.toList().indexOf(_currentPage),
           onTap: (index) {
-            setState(() {
-              _currentPage = _pages.keys.toList()[index];
-              screenSelector(_pages[_currentPage]!);
-            });
+            screenSelector(_pages[_pages.keys.toList()[index]]!);
           },
           unselectedItemColor: Colors.deepPurpleAccent.shade400,
           selectedItemColor: Colors.amberAccent.shade700,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.home),
               label: "Home",
