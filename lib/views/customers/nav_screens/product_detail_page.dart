@@ -369,7 +369,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 child: Text('Buy Now'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _currentUser == null ? null : () {
+      _addToCart(context);
+      },
                 child: Text('Add to Cart'),
               ),
             ],
