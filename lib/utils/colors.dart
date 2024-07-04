@@ -39,6 +39,8 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF); // Surface Color
   static const Color backgroundGlitter = Color(0xffe5f0f9);
   static const Color sidebarAntiFlashWhite = Color(0xfff1f5f9);
+  static const Color hawkeyBlue = Color(0xffe9effe);
+
 
   //sidebar color
   static  const Color sidebarUnselectFontColor = onyx;

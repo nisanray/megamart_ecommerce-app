@@ -52,20 +52,20 @@ class _QuantitySelectorState extends State<QuantitySelector> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
           icon: Icon(Icons.remove),
           onPressed: _decrementQuantity,
         ),
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 100
-          ),
+        SizedBox(
+          width: 50,
           child: TextFormField(
             initialValue: _quantity.toString(),
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              // contentPadding: EdgeInsets.symmetric(vertical: 10),
               border: OutlineInputBorder(),
             ),
             onChanged: _updateQuantity,

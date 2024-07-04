@@ -227,6 +227,21 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             SizedBox(height: 10),
             Container(
+              padding: const EdgeInsets.all(16),
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -240,11 +255,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             SizedBox(height: 10),
             Container(
+              padding: const EdgeInsets.all(16),
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Delivery',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Divider(),
+                  Text(
+                    'Service',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   // Add delivery info here
@@ -256,16 +292,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Service',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+
                   // Add service info here
                 ],
               ),
             ),
             SizedBox(height: 10),
             Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
@@ -280,6 +315,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               ),
               padding: const EdgeInsets.all(16),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -292,23 +328,42 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             SizedBox(height: 10),
             Container(
+              padding: EdgeInsets.all(16),
+              height: 130,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'QNA',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  // Add QNA section here
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text('Ask Question'),
+                      ),
+                    ],
+                  ),// Add QNA section here
                 ],
               ),
             ),
             SizedBox(height: 10),
-            Divider(),
-            TextButton(
-              onPressed: () {},
-              child: Text('Ask Question'),
-            ),
             Divider(),
             Container(
               child: Column(

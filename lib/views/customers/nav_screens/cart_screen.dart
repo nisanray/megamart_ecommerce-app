@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:megamart/utils/custom_button.dart';
-
 import '../../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 import 'category_screen.dart';
-// import 'quantity_selector.dart'; // Import the QuantitySelector widget
 
 class CartScreen extends StatefulWidget {
-
-  CartScreen({super.key, });
+  CartScreen({super.key});
   static const routeName = '/cart';
 
   @override
@@ -19,6 +16,8 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   User? _currentUser;
+  bool _isSelectionMode = false;
+  Set<String> _selectedItems = Set<String>();
 
   @override
   void initState() {
@@ -29,6 +28,37 @@ class _CartScreenState extends State<CartScreen> {
   void _getCurrentUser() {
     _currentUser = FirebaseAuth.instance.currentUser;
     setState(() {});
+  }
+
+  void _toggleSelectionMode() {
+    setState(() {
+      _isSelectionMode = !_isSelectionMode;
+      _selectedItems.clear();
+    });
+  }
+
+  void _onItemSelect(String cartItemId) {
+    setState(() {
+      if (_selectedItems.contains(cartItemId)) {
+        _selectedItems.remove(cartItemId);
+      } else {
+        _selectedItems.add(cartItemId);
+      }
+    });
+  }
+
+  Future<void> _removeSelectedItems() async {
+    for (var itemId in _selectedItems) {
+      await FirebaseFirestore.instance.collection('cartItems').doc(itemId).delete();
+    }
+    _toggleSelectionMode();
+  }
+
+  Future<void> _checkoutSelectedItems() async {
+    // Handle the checkout logic here
+    // This is a placeholder function for the checkout process
+    // You can integrate your checkout logic here
+    _toggleSelectionMode();
   }
 
   @override
@@ -47,7 +77,18 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Cart'),
-        // backgroundColor: Colors.blueAccent,
+        actions: [
+          if (_isSelectionMode)
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: _toggleSelectionMode,
+            )
+          else
+            IconButton(
+              icon: Icon(Icons.select_all),
+              onPressed: _toggleSelectionMode,
+            ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -68,7 +109,7 @@ class _CartScreenState extends State<CartScreen> {
           var cartItems = snapshot.data!.docs;
 
           return ListView.builder(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(vertical: 8),
             itemCount: cartItems.length,
             itemBuilder: (context, index) {
               var cartItem = cartItems[index];
@@ -110,70 +151,84 @@ class _CartScreenState extends State<CartScreen> {
                       .firstWhere((field) => field['fieldName'] == 'Product Image URL')['value'];
                   var productPrice = productData['fixedFields']
                       .firstWhere((field) => field['fieldName'] == 'Regular Price')['value'];
-                  var unitPrice = double.parse(productPrice);
+                  var offerPrice = (productData['fixedFields']
+                      .firstWhere((field) => field['fieldName'] == 'Offer Price')['value']);
+                  var unitPrice = double.parse(offerPrice);
+                  var regularUnitPrice = double.parse(productPrice);
                   var totalPrice = unitPrice * quantity;
+
 
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 8.0),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.grey, // set the border color
-                        width: 1.0, // set the border width
+                        color: Colors.grey,
+                        width: 1.0,
                       ),
-                      borderRadius: BorderRadius.circular(10)
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-
-                            leading: productImageUrl.isNotEmpty
-                                ? Image.network(productImageUrl, width: 50, height: 50, fit: BoxFit.fitHeight)
-                                : Container(width: 50, height: 50, color: Colors.grey.shade700),
-                            title: Text(
-                              productName,
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    child: Row(
+                      children: [
+                        if (productImageUrl.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.network(
+                              productImageUrl,
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
                             ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          ),
+                        if (productImageUrl.isEmpty)
+                          Container(
+                            width: 50,
+                            height: 50,
+                            color: Colors.grey.shade700,
+                          ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  productName,
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(height: 4),
-                                        Text('Store: $storeName'),
-                                        SizedBox(height: 4),
-                                        Text('Unit Price: \$${unitPrice.toStringAsFixed(2)}'),
-                                      ],
-                                    ),
-                                    QuantitySelector(
-                                      initialQuantity: quantity,
-                                      onQuantityChanged: (newQuantity) {
-                                        _updateCartItemQuantity(cartItem.id, newQuantity);
+                                    Text('Store: $storeName'),
+                                    Text('Offer Price: \$${offerPrice.toString()}'),
+                                    Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
+                                    Text('Total: \$${totalPrice.toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold)),
+                                    IconButton(
+                                      padding: EdgeInsets.zero,
+                                      icon: _selectedItems.contains(cartItem.id)
+                                          ? Icon(Icons.check_box, color: Colors.blue)
+                                          : Icon(Icons.check_box_outline_blank),
+                                      onPressed: () {
+                                        _onItemSelect(cartItem.id);
                                       },
                                     ),
                                   ],
                                 ),
+                                trailing: Column(
+                                  children: [
+                                    Flexible(
+                                      child: QuantitySelector(
+                                        initialQuantity: quantity,
+                                        onQuantityChanged: (newQuantity) {
+                                          _updateCartItemQuantity(cartItem.id, newQuantity);
+                                        },
+                                      ),
+                                    ),
 
-
-                                SizedBox(height: 4),
-                                Text('Total: \$${totalPrice.toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            trailing: IconButton(
-                              icon: Icon(Icons.delete, color: Colors.redAccent),
-                              onPressed: () {
-                                _removeCartItem(cartItem.id);
-                              },
-                            ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -182,6 +237,28 @@ class _CartScreenState extends State<CartScreen> {
           );
         },
       ),
+      bottomNavigationBar: _isSelectionMode && _selectedItems.isNotEmpty
+          ? BottomAppBar(
+        child: Container(
+          height: 60.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: _removeSelectedItems,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                child: Text('Delete Selected'),
+              ),
+              ElevatedButton(
+                onPressed: _checkoutSelectedItems,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                child: Text('Checkout Selected'),
+              ),
+            ],
+          ),
+        ),
+      )
+          : SizedBox.shrink(),
     );
   }
 
@@ -213,7 +290,6 @@ class _CartScreenState extends State<CartScreen> {
                   builder: (context) => MainScreen(initialIndex: 1),
                 ),
               );
-
             },
           ),
         ],
