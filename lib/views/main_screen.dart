@@ -54,7 +54,7 @@ class MainScreenState extends State<MainScreen> {
         _selectedItem = CartScreen();
         break;
       case 4:
-        _selectedItem = SearchScreen();
+        _selectedItem = SearchScreen(searchQuery: ''); // Ensure empty query for initial load
         break;
       case 5:
         _selectedItem = AccountScreen();

@@ -10,8 +10,8 @@ class StoreScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Stores', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        backgroundColor: Colors.teal,
+        // centerTitle: true,
+        // backgroundColor: Colors.teal,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance

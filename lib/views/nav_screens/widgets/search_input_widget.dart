@@ -1,23 +1,30 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchInputWidget extends StatelessWidget {
+  final TextEditingController controller;
+  final VoidCallback onSubmitted;
+
   const SearchInputWidget({
-    super.key,
-  });
+    Key? key,
+    required this.controller,
+    required this.onSubmitted,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           labelText: "Search for products",
-          // fillColor: Colors.blueAccent.withOpacity(0.2),
           fillColor: Colors.grey.withOpacity(0.1),
           filled: true,
-          prefixIcon: Icon(Icons.search_sharp,color: Colors.deepPurpleAccent.shade700,size: 30,),
-          // border: OutlineInputBorder(borderRadius: BorderRadius.circular(30),),
+          prefixIcon: Icon(
+            Icons.search_sharp,
+            color: Colors.deepPurpleAccent.shade700,
+            size: 30,
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),
             borderSide: const BorderSide(
@@ -32,6 +39,7 @@ class SearchInputWidget extends StatelessWidget {
             ),
           ),
         ),
+        onSubmitted: (_) => onSubmitted(),
       ),
     );
   }

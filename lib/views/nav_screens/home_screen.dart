@@ -4,39 +4,78 @@ import 'package:megamart/views/nav_screens/widgets/banner_widget.dart';
 import 'package:megamart/views/nav_screens/widgets/category_text.dart';
 import 'package:megamart/views/nav_screens/widgets/search_input_widget.dart';
 import 'product_detail_page.dart';
+import 'search_screen.dart'; // Import the SearchScreen
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static const routeName = '/home';
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        _searchQuery = _searchController.text.toLowerCase();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _navigateToSearchScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchScreen(searchQuery: _searchQuery),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: true,
-            floating: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: SearchInputWidget(),
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              pinned: true,
+              floating: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: SearchInputWidget(
+                    controller: _searchController,
+                    onSubmitted: () => _navigateToSearchScreen(context),
+                  ),
+                ),
+              ),
+              expandedHeight: 100,
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  BannerWidget(),
+                  CategoryText(),
+                  const SizedBox(height: 20),
+                  _buildRandomProducts(context),
+                ],
               ),
             ),
-            expandedHeight: 100,
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                BannerWidget(),
-                CategoryText(),
-                const SizedBox(height: 20),
-                _buildRandomProducts(context),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -99,22 +138,22 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                       child: productImageUrl.isNotEmpty
                           ? Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Image.network(
-                                                    productImageUrl,
-                                                    height: 150,
-                                                    width: double.infinity,
-                                                    fit: BoxFit.fitHeight,
-                                                    errorBuilder: (context, error, stackTrace) {
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Image.network(
+                          productImageUrl,
+                          height: 150,
+                          width: double.infinity,
+                          fit: BoxFit.fitHeight,
+                          errorBuilder: (context, error, stackTrace) {
                             return Container(
                               color: Colors.grey,
                               child: const Center(
                                 child: Icon(Icons.error, color: Colors.red),
                               ),
                             );
-                                                    },
-                                                  ),
-                          )
+                          },
+                        ),
+                      )
                           : Container(
                         height: 150,
                         width: double.infinity,
