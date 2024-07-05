@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:megamart/views/nav_screens/extra_search_screen.dart';
 import '../main_screen.dart';
 import 'product_detail_page.dart';
 // import 'main_screen.dart'; // Import the MainScreen
 import 'widgets/search_input_widget.dart'; // Import the SearchInputWidget
 
-class SearchScreen extends StatefulWidget {
-  static const routeName = '/search';
+class ExtraSearchScreen extends StatefulWidget {
+  // static const routeName = '/search';
   final String searchQuery;
 
-  const SearchScreen({
+  const ExtraSearchScreen({
     Key? key,
     required this.searchQuery,
   }) : super(key: key);
@@ -19,7 +18,7 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends State<ExtraSearchScreen> {
   late int _selectedIndex;
   TextEditingController _searchController = TextEditingController();
 
@@ -47,7 +46,6 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-
   void _navigateToSearchScreen(BuildContext context, String query) {
     Navigator.pushReplacement(
       context,
@@ -201,7 +199,39 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        unselectedItemColor: Colors.deepPurpleAccent.shade400,
+        selectedItemColor: Colors.amberAccent.shade700,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore_outlined),
+            label: "Categories",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: "Store",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Search",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Account",
+          ),
+        ],
+      ),
     );
   }
 }
