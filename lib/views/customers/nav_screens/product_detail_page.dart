@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:megamart/utils/assets_link.dart';
 import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
 
 import '../../../utils/quantity_selector.dart';
@@ -274,14 +275,24 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Delivery',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Row(
+                    children: [
+                      Text(
+                        'Delivery        ',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Image.asset(AssetsLink.approvalIcon,height: 25,)
+                    ],
                   ),
                   Divider(),
-                  Text(
-                    'Service',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Row(
+                    children: [
+                      Text(
+                        'Service        ',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Image.asset(AssetsLink.leftArrowInCircleIcon,height: 25,)
+                    ],
                   ),
                   // Add delivery info here
                 ],

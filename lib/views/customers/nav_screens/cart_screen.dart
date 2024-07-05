@@ -30,13 +30,6 @@ class _CartScreenState extends State<CartScreen> {
     setState(() {});
   }
 
-  void _toggleSelectionMode() {
-    setState(() {
-      _isSelectionMode = !_isSelectionMode;
-      _selectedItems.clear();
-    });
-  }
-
   void _onItemSelect(String cartItemId) {
     setState(() {
       if (_selectedItems.contains(cartItemId)) {
@@ -44,6 +37,7 @@ class _CartScreenState extends State<CartScreen> {
       } else {
         _selectedItems.add(cartItemId);
       }
+      _isSelectionMode = _selectedItems.isNotEmpty;
     });
   }
 
@@ -157,7 +151,6 @@ class _CartScreenState extends State<CartScreen> {
                   var regularUnitPrice = double.parse(productPrice);
                   var totalPrice = unitPrice * quantity;
 
-
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 8.0),
                     decoration: BoxDecoration(
@@ -166,69 +159,76 @@ class _CartScreenState extends State<CartScreen> {
                         width: 1.0,
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        if (productImageUrl.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.network(
-                              productImageUrl,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Row(
+                        children: [
+                          if (productImageUrl.isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.network(
+                                productImageUrl,
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          if (productImageUrl.isEmpty)
+                            Container(
                               width: 50,
                               height: 50,
-                              fit: BoxFit.cover,
+                              color: Colors.grey.shade700,
                             ),
-                          ),
-                        if (productImageUrl.isEmpty)
-                          Container(
-                            width: 50,
-                            height: 50,
-                            color: Colors.grey.shade700,
-                          ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                title: Text(
-                                  productName,
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Store: $storeName'),
-                                    Text('Offer Price: \$${offerPrice.toString()}'),
-                                    Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
-                                    Text('Total: \$${totalPrice.toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold)),
-                                    IconButton(
-                                      padding: EdgeInsets.zero,
-                                      icon: _selectedItems.contains(cartItem.id)
-                                          ? Icon(Icons.check_box, color: Colors.blue)
-                                          : Icon(Icons.check_box_outline_blank),
-                                      onPressed: () {
-                                        _onItemSelect(cartItem.id);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                trailing: Column(
-                                  children: [
-                                    Flexible(
-                                      child: QuantitySelector(
-                                        initialQuantity: quantity,
-                                        onQuantityChanged: (newQuantity) {
-                                          _updateCartItemQuantity(cartItem.id, newQuantity);
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    productName,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Store: $storeName'),
+                                      Text('Offer Price: \$${offerPrice.toString()}'),
+                                      Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
+                                      Text('Total: \$${totalPrice.toStringAsFixed(2)}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: _selectedItems.contains(cartItem.id)
+                                            ? Icon(Icons.check_box,
+                                            color: Colors.blue)
+                                            : Icon(Icons.check_box_outline_blank),
+                                        onPressed: () {
+                                          _onItemSelect(cartItem.id);
                                         },
                                       ),
-                                    ),
-
-                                  ],
+                                    ],
+                                  ),
+                                  trailing: Column(
+                                    children: [
+                                      Flexible(
+                                        child: QuantitySelector(
+                                          initialQuantity: quantity,
+                                          onQuantityChanged: (newQuantity) {
+                                            _updateCartItemQuantity(
+                                                cartItem.id, newQuantity);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -239,23 +239,25 @@ class _CartScreenState extends State<CartScreen> {
       ),
       bottomNavigationBar: _isSelectionMode && _selectedItems.isNotEmpty
           ? BottomAppBar(
-        child: Container(
-          height: 60.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: _removeSelectedItems,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child: Text('Delete Selected'),
-              ),
-              ElevatedButton(
-                onPressed: _checkoutSelectedItems,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: Text('Checkout Selected'),
-              ),
-            ],
-          ),
+        height: 50,
+        padding: EdgeInsets.zero,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+
+              onPressed: _removeSelectedItems,
+              style:
+              ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              child: Text('Delete',style: TextStyle(color: Colors.white),),
+            ),
+            ElevatedButton(
+              onPressed: _checkoutSelectedItems,
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green),
+              child: Text('Checkout',style: TextStyle(color: Colors.white),),
+            ),
+          ],
         ),
       )
           : SizedBox.shrink(),
@@ -301,13 +303,26 @@ class _CartScreenState extends State<CartScreen> {
     if (newQuantity <= 0) {
       _removeCartItem(cartItemId);
     } else {
-      await FirebaseFirestore.instance.collection('cartItems').doc(cartItemId).update({
+      await FirebaseFirestore.instance
+          .collection('cartItems')
+          .doc(cartItemId)
+          .update({
         'quantity': newQuantity,
       });
     }
   }
 
   Future<void> _removeCartItem(String cartItemId) async {
-    await FirebaseFirestore.instance.collection('cartItems').doc(cartItemId).delete();
+    await FirebaseFirestore.instance
+        .collection('cartItems')
+        .doc(cartItemId)
+        .delete();
+  }
+
+  void _toggleSelectionMode() {
+    setState(() {
+      _isSelectionMode = !_isSelectionMode;
+      _selectedItems.clear();
+    });
   }
 }
