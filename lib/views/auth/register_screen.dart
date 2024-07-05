@@ -8,10 +8,10 @@ import 'package:megamart/utils/circular_progress_indicator.dart';
 import 'package:megamart/utils/colors.dart';
 import 'package:megamart/utils/custom_button.dart';
 import 'package:megamart/utils/custom_text_form_fields.dart';
-import 'package:megamart/views/customers/auth/login_screen.dart';
-import 'package:megamart/views/customers/main_screen.dart';
+import 'package:megamart/views/auth/login_screen.dart';
+import 'package:megamart/views/main_screen.dart';
 import 'dart:io';
-import '../../../utils/show_snackbar.dart';
+import '../../utils/show_snackbar.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
   CustomerRegistrationScreen({super.key});

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:megamart/utils/custom_button.dart';
-import '../../../utils/quantity_selector.dart';
+import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 import 'category_screen.dart';
+import 'product_detail_page.dart'; // Import the ProductDetailPage
 
 class CartScreen extends StatefulWidget {
   CartScreen({super.key});
@@ -145,8 +146,8 @@ class _CartScreenState extends State<CartScreen> {
                       .firstWhere((field) => field['fieldName'] == 'Product Image URL')['value'];
                   var productPrice = productData['fixedFields']
                       .firstWhere((field) => field['fieldName'] == 'Regular Price')['value'];
-                  var offerPrice = (productData['fixedFields']
-                      .firstWhere((field) => field['fieldName'] == 'Offer Price')['value']);
+                  var offerPrice = productData['fixedFields']
+                      .firstWhere((field) => field['fieldName'] == 'Offer Price')['value'];
                   var unitPrice = double.parse(offerPrice);
                   var regularUnitPrice = double.parse(productPrice);
                   var totalPrice = unitPrice * quantity;
@@ -159,75 +160,84 @@ class _CartScreenState extends State<CartScreen> {
                         width: 1.0,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Row(
-                        children: [
-                          if (productImageUrl.isNotEmpty)
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.network(
-                                productImageUrl,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ProductDetailPage(product: productSnapshot.data!),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          children: [
+                            if (productImageUrl.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.network(
+                                  productImageUrl,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            if (productImageUrl.isEmpty)
+                              Container(
                                 width: 50,
                                 height: 50,
-                                fit: BoxFit.fitHeight,
+                                color: Colors.grey.shade700,
                               ),
-                            ),
-                          if (productImageUrl.isEmpty)
-                            Container(
-                              width: 50,
-                              height: 50,
-                              color: Colors.grey.shade700,
-                            ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListTile(
-                                  title: Text(
-                                    productName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold, fontSize: 16),
-                                  ),
-                                  subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Store: $storeName'),
-                                      Text('Offer Price: \$${offerPrice.toString()}'),
-                                      Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
-                                      Text('Total: \$${totalPrice.toStringAsFixed(2)}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      IconButton(
-                                        padding: EdgeInsets.zero,
-                                        icon: _selectedItems.contains(cartItem.id)
-                                            ? Icon(Icons.check_box,
-                                            color: Colors.blue)
-                                            : Icon(Icons.check_box_outline_blank),
-                                        onPressed: () {
-                                          _onItemSelect(cartItem.id);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  trailing: Column(
-                                    children: [
-                                      Flexible(
-                                        child: QuantitySelector(
-                                          initialQuantity: quantity,
-                                          onQuantityChanged: (newQuantity) {
-                                            _updateCartItemQuantity(
-                                                cartItem.id, newQuantity);
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      productName,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold, fontSize: 16),
+                                    ),
+                                    subtitle: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Store: $storeName'),
+                                        Text('Offer Price: \$${offerPrice.toString()}'),
+                                        Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
+                                        Text('Total: \$${totalPrice.toStringAsFixed(2)}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        IconButton(
+                                          padding: EdgeInsets.zero,
+                                          icon: _selectedItems.contains(cartItem.id)
+                                              ? Icon(Icons.check_box,
+                                              color: Colors.blue)
+                                              : Icon(Icons.check_box_outline_blank),
+                                          onPressed: () {
+                                            _onItemSelect(cartItem.id);
                                           },
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
+                                    trailing: Column(
+                                      children: [
+                                        Flexible(
+                                          child: QuantitySelector(
+                                            initialQuantity: quantity,
+                                            onQuantityChanged: (newQuantity) {
+                                              _updateCartItemQuantity(
+                                                  cartItem.id, newQuantity);
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -245,17 +255,14 @@ class _CartScreenState extends State<CartScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-
               onPressed: _removeSelectedItems,
-              style:
-              ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: Text('Delete',style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              child: Text('Delete', style: TextStyle(color: Colors.white)),
             ),
             ElevatedButton(
               onPressed: _checkoutSelectedItems,
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green),
-              child: Text('Checkout',style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child: Text('Checkout', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

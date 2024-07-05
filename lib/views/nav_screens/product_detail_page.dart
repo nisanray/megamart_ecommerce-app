@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:megamart/utils/assets_link.dart';
-import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
+import 'package:megamart/views/nav_screens/cart_screen.dart';
 
-import '../../../utils/quantity_selector.dart';
+import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  final QueryDocumentSnapshot product;
+  final DocumentSnapshot product;
 
   const ProductDetailPage({Key? key, required this.product}) : super(key: key);
 
@@ -131,12 +131,26 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               onSelected: (String result) {},
               itemBuilder: (BuildContext context) => [
                 PopupMenuItem<String>(
-                  value: 'Option 1',
-                  child: Text('Option 1'),
+                  child: Text('Home'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainScreen(initialIndex: 0),
+                      ),
+                    );
+                  },
                 ),
                 PopupMenuItem<String>(
-                  value: 'Option 2',
-                  child: Text('Option 2'),
+                  child: Text('My account'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainScreen(initialIndex: 5),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -278,10 +292,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   Row(
                     children: [
                       Text(
-                        'Delivery        ',
+                        'Delivery       ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.approvalIcon,height: 25,)
+                      Image.asset(AssetsLink.approvalIcon,height: 25,color: Colors.deepPurpleAccent.shade700,)
                     ],
                   ),
                   Divider(),
@@ -291,7 +305,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         'Service        ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.leftArrowInCircleIcon,height: 25,)
+                      Image.asset(AssetsLink.leftArrowInCircleIcon,height: 25,color: Colors.deepPurpleAccent.shade700)
                     ],
                   ),
                   // Add delivery info here
@@ -419,6 +433,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        height: 70,
+        padding: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: Row(

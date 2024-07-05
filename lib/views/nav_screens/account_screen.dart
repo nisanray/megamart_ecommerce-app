@@ -199,7 +199,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -281,6 +281,9 @@ class _AccountScreenState extends State<AccountScreen> {
 
                       },)
                     ],
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

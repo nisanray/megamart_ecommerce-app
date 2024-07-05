@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:megamart/views/customers/nav_screens/widgets/banner_widget.dart';
-import 'package:megamart/views/customers/nav_screens/widgets/category_text.dart';
-import 'package:megamart/views/customers/nav_screens/widgets/search_input_widget.dart';
+import 'package:megamart/views/nav_screens/widgets/banner_widget.dart';
+import 'package:megamart/views/nav_screens/widgets/category_text.dart';
+import 'package:megamart/views/nav_screens/widgets/search_input_widget.dart';
 import 'product_detail_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(

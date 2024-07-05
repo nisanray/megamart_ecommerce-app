@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:megamart/views/customers/nav_screens/account_screen.dart';
-import 'package:megamart/views/customers/nav_screens/cart_screen.dart';
-import 'package:megamart/views/customers/nav_screens/category_screen.dart';
-import 'package:megamart/views/customers/nav_screens/home_screen.dart';
-import 'package:megamart/views/customers/nav_screens/search_screen.dart';
-import 'package:megamart/views/customers/nav_screens/store_screen.dart';
+import 'package:megamart/views/nav_screens/account_screen.dart';
+import 'package:megamart/views/nav_screens/cart_screen.dart';
+import 'package:megamart/views/nav_screens/category_screen.dart';
+import 'package:megamart/views/nav_screens/home_screen.dart';
+import 'package:megamart/views/nav_screens/search_screen.dart';
+import 'package:megamart/views/nav_screens/store_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static final GlobalKey<MainScreenState> mainScreenKey = GlobalKey<MainScreenState>();

@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megamart/controllers/auth_controller.dart';
 import 'package:megamart/utils/colors.dart';
-import 'package:megamart/views/customers/auth/register_screen.dart';
-import 'package:megamart/views/customers/main_screen.dart';
+import 'package:megamart/views/auth/register_screen.dart';
+import 'package:megamart/views/main_screen.dart';
 import 'package:megamart/utils/show_snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInScreen extends StatefulWidget {
   LogInScreen({Key? key}) : super(key: key);
@@ -215,6 +216,10 @@ class _LogInScreenState extends State<LogInScreen> {
       _isLoading = false;
     });
     if (loginResult == 'Success') {
+      // Save login state
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', true);
+
       // Navigate to home or dashboard page after successful login
       debugPrint('Login Successful');
       showSnackBar(context, 'Login Successful.',

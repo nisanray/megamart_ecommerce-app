@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:megamart/views/customers/auth/login_screen.dart';
+import 'package:megamart/views/auth/login_screen.dart';
 import 'account_info_update.dart';
 
 class SettingsView extends StatelessWidget {
