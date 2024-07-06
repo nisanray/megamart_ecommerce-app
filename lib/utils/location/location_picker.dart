@@ -116,6 +116,7 @@ class _LocationPickerState extends State<LocationPicker> {
       crossAxisAlignment: CrossAxisAlignment.center,
 
       children: [
+        SizedBox(height: 8),
         _buildDropdown(
           label: 'Select Division',
           value: selectedDivisionId,
@@ -127,7 +128,7 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onDivisionChanged,
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 8),
         _buildDropdown(
           label: 'Select District',
           value: selectedDistrictId,
@@ -139,7 +140,7 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onDistrictChanged,
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 8),
         _buildDropdown(
           label: 'Select Upazila',
           value: selectedUpazilaId,
@@ -151,7 +152,7 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onUpazilaChanged,
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 8),
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 500),
           child: TextFormField(
@@ -177,7 +178,7 @@ class _LocationPickerState extends State<LocationPicker> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 8),
+        // SizedBox(height: 8),
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 500),
           child: DropdownButtonFormField<String>(

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:megamart/utils/custom_navigation_icon.dart';
 import 'package:megamart/views/settings/settings_view.dart';
 
+import '../orders/order_list_screen.dart';
+// import 'order_list_screen.dart'; // Import the new screen
+
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
   static const routeName = '/account';
@@ -14,7 +17,6 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -40,68 +42,45 @@ class _AccountScreenState extends State<AccountScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent.withOpacity(0.3),
-      appBar:AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(_fullName),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             backgroundImage: _profilePictureUrl.isNotEmpty
-              ? NetworkImage(_profilePictureUrl)
-              : AssetImage('assets/default_profile.png') as ImageProvider,
+                ? NetworkImage(_profilePictureUrl)
+                : AssetImage('assets/default_profile.png') as ImageProvider,
             radius: 20,
           ),
         ),
         actions: [
-          IconButton(onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsView(),));
-          }, icon: Icon(CupertinoIcons.settings))
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsView(),
+                ),
+              );
+            },
+            icon: Icon(CupertinoIcons.settings),
+          ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 3,),
+            SizedBox(height: 3),
             Container(
               color: Colors.white,
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  // SizedBox(height: ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     CircleAvatar(
-                  //       backgroundImage: AssetImage('assets/profile.jpg'),
-                  //       radius: 30,
-                  //     ),
-                  //     Column(
-                  //       children: [
-                  //         Text(
-                  //           'NISAN RAY',
-                  //           style: TextStyle(fontSize: 18),
-                  //         ),
-                  //
-                  //         ElevatedButton(
-                  //           onPressed: () {},
-                  //           child: Text('Add mobile number now >'),
-                  //         ),
-                  //
-                  //
-                  //
-                  //       ],
-                  //     ),
-                  //     ElevatedButton(
-                  //       onPressed: () {},
-                  //       child: Text('Daraz Club Member'),
-                  //     ),
-                  //   ],
-                  // ),
                   SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -114,7 +93,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                           Text(
                             'My Wishlist',
-                            style: TextStyle( fontSize: 16),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
@@ -122,11 +101,11 @@ class _AccountScreenState extends State<AccountScreen> {
                         children: [
                           Text(
                             '66',
-                            style: TextStyle( fontSize: 18),
+                            style: TextStyle(fontSize: 18),
                           ),
                           Text(
                             'Followed Stores',
-                            style: TextStyle( fontSize: 16),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
@@ -134,11 +113,11 @@ class _AccountScreenState extends State<AccountScreen> {
                         children: [
                           Text(
                             '16',
-                            style: TextStyle( fontSize: 18),
+                            style: TextStyle(fontSize: 18),
                           ),
                           Text(
                             'Vouchers',
-                            style: TextStyle( fontSize: 16),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
@@ -153,7 +132,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   SizedBox(height: 3),
                   Container(
                     width: MediaQuery.sizeOf(context).width,
-                      child: Image.asset('assets/promo/promo.jpg',fit: BoxFit.cover,)),
+                    child: Image.asset('assets/promo/promo.jpg', fit: BoxFit.cover),
+                  ),
                   SizedBox(height: 3),
                   Container(
                     padding: EdgeInsets.all(15),
@@ -161,63 +141,74 @@ class _AccountScreenState extends State<AccountScreen> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                     ),
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('My Orders'),
-                          Text('View All >'),
-                        ],
-                      ),
-                      SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Icon(Icons.payment),
-                              Text('To Pay'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(Icons.local_shipping),
-                              Text('To Ship'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(Icons.receipt),
-                              Text('To Receive'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(Icons.rate_review),
-                              Text('To Review'),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Icon(Icons.refresh),
-                              Text('My Returns'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(Icons.cancel),
-                              Text('My Cancellations'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('My Orders'),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OrderListScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text('View All >'),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                Icon(Icons.payment),
+                                Text('To Pay'),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.local_shipping),
+                                Text('To Ship'),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.receipt),
+                                Text('To Receive'),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.rate_review),
+                                Text('To Review'),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 40),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                Icon(Icons.refresh),
+                                Text('My Returns'),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.cancel),
+                                Text('My Cancellations'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 3),
@@ -233,7 +224,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   Container(
                     padding: EdgeInsets.all(15),
                     color: Colors.white,
-                  child: Column(
+                    child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -248,11 +239,11 @@ class _AccountScreenState extends State<AccountScreen> {
                           style: TextStyle(fontSize: 18),
                         ),
                       ],
-                  ),
-                  ),
-                      ],
                     ),
                   ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 3,
             ),
@@ -269,20 +260,26 @@ class _AccountScreenState extends State<AccountScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomBottomNavigationItem(icon: Icons.email_outlined, label: 'My Messages', onTap: () {
-                      },),
-
-                      CustomBottomNavigationItem(icon: Icons.credit_card_outlined, label: 'Payment Options', onTap: () {
-
-                      },),
-
-                      CustomBottomNavigationItem(icon: Icons.help_outline, label: 'Help Center', onTap: () {
-
-                      },),
-
-                      CustomBottomNavigationItem(icon: Icons.headset_mic_outlined, label: 'Caht With Us', onTap: () {
-
-                      },)
+                      CustomBottomNavigationItem(
+                        icon: Icons.email_outlined,
+                        label: 'My Messages',
+                        onTap: () {},
+                      ),
+                      CustomBottomNavigationItem(
+                        icon: Icons.credit_card_outlined,
+                        label: 'Payment Options',
+                        onTap: () {},
+                      ),
+                      CustomBottomNavigationItem(
+                        icon: Icons.help_outline,
+                        label: 'Help Center',
+                        onTap: () {},
+                      ),
+                      CustomBottomNavigationItem(
+                        icon: Icons.headset_mic_outlined,
+                        label: 'Chat With Us',
+                        onTap: () {},
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -291,14 +288,16 @@ class _AccountScreenState extends State<AccountScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomBottomNavigationItem(icon: Icons.reviews_outlined, label: 'My Reviews', onTap: () {
-
-                      },),
-
-                      CustomBottomNavigationItem(icon: Icons.connect_without_contact_outlined, label: "Influencer Hub", onTap: () {
-
-                      },),
-
+                      CustomBottomNavigationItem(
+                        icon: Icons.reviews_outlined,
+                        label: 'My Reviews',
+                        onTap: () {},
+                      ),
+                      CustomBottomNavigationItem(
+                        icon: Icons.connect_without_contact_outlined,
+                        label: "Influencer Hub",
+                        onTap: () {},
+                      ),
                     ],
                   )
                 ],
@@ -307,7 +306,6 @@ class _AccountScreenState extends State<AccountScreen> {
           ],
         ),
       ),
-
     );
   }
 }

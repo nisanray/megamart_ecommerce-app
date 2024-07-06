@@ -6,6 +6,7 @@ import 'package:megamart/views/nav_screens/cart_screen.dart';
 
 import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
+import 'vendor_detail_page.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final DocumentSnapshot product;
@@ -22,6 +23,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   User? _currentUser;
   Map<String, dynamic>? _vendorData;
   String _productName = "";
+  String _regularPrice = "";
+  String _offerPrice = "";
 
   @override
   void initState() {
@@ -46,11 +49,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       });
     }
 
-    // Fetch product name
+    // Fetch product details
     final fixedFields = List<Map<String, dynamic>>.from(widget.product['fixedFields']);
     final productNameField = fixedFields.firstWhere((field) => field['fieldName'] == 'Product Name');
+    final regularPriceField = fixedFields.firstWhere((field) => field['fieldName'] == 'Regular Price');
+    final offerPriceField = fixedFields.firstWhere((field) => field['fieldName'] == 'Offer Price');
+
     setState(() {
       _productName = productNameField['value'];
+      _regularPrice = regularPriceField['value'].toString();
+      _offerPrice = offerPriceField['value'].toString();
     });
 
     // Check if the product is already in the cart
@@ -99,10 +107,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            // IconButton(
-            //   icon: Icon(Icons.arrow_back),
-            //   onPressed: () => Navigator.pop(context),
-            // ),
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
@@ -124,7 +128,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     builder: (context) => MainScreen(initialIndex: 3),
                   ),
                 );
-
               },
             ),
             PopupMenuButton<String>(
@@ -165,7 +168,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height*0.35,
+              height: MediaQuery.of(context).size.height * 0.35,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -199,10 +202,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('\$20.00',style: TextStyle(fontSize: 30),),
+                      Text('\$$_offerPrice', style: TextStyle(fontSize: 30)),
                       SizedBox(width: 10),
                       Text(
-                        '\$25.00',
+                        '\$$_regularPrice',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.red,
@@ -213,10 +216,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       SizedBox(width: 10),
                       Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),border: Border.all(color: Colors.grey)
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.grey),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                             child: Text('♥50'),
                           )),
                     ],
@@ -228,15 +232,23 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   SizedBox(height: 8),
                   InkWell(
                     onTap: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VendorDetailPage(
+                            vendorId: vendorId,
+                            vendorData: _vendorData!,
+                          ),
+                        ),
+                      );
                     },
                     child: Row(
                       children: [
                         Icon(Icons.store_mall_directory_outlined),
-                        Text(' Store Name (Seller Review: 4.5 stars)'),
+                        Text(' ${_vendorData?['profile']['storeName'] ?? ''} (Ratings: ${_vendorData?['profile']['ratings'] ?? 0} stars)'),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -295,7 +307,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         'Delivery       ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.approvalIcon,height: 25,color: Colors.deepPurpleAccent.shade700,)
+                      Image.asset(AssetsLink.approvalIcon, height: 25, color: Colors.deepPurpleAccent.shade700),
                     ],
                   ),
                   Divider(),
@@ -305,7 +317,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         'Service        ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.leftArrowInCircleIcon,height: 25,color: Colors.deepPurpleAccent.shade700)
+                      Image.asset(AssetsLink.leftArrowInCircleIcon, height: 25, color: Colors.deepPurpleAccent.shade700),
                     ],
                   ),
                   // Add delivery info here
@@ -317,7 +329,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   // Add service info here
                 ],
               ),
@@ -384,13 +395,28 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: Text('Ask Question'),
                       ),
                     ],
-                  ),// Add QNA section here
+                  ),
+                  // Add QNA section here
                 ],
               ),
             ),
             SizedBox(height: 10),
             Divider(),
             Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -398,12 +424,55 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     'Store Info',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VendorDetailPage(
+                            vendorId: vendorId,
+                            vendorData: _vendorData!,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(_vendorData?['profile']['storeLogoUrl'] ?? ''),
+                          radius: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Store Name: ${_vendorData?['profile']['storeName'] ?? ''}'),
+                            Text('Ratings: ${_vendorData?['profile']['ratings'] ?? 0} stars'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   // Add store info here
                 ],
               ),
             ),
             SizedBox(height: 10),
             Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -411,7 +480,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     'Product Details',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  // Add product details here
+                  // Add product details from fixed fields
+                  ...fixedFields.map((field) => _buildField(field)).toList(),
+                  // Add product details from additional fields
+                  ...additionalFields.map((field) => _buildField(field)).toList(),
                 ],
               ),
             ),
@@ -440,20 +512,29 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {
-
-              }, icon: Icon(Icons.store_mall_directory_outlined)),
-              IconButton(onPressed: () {
-
-              }, icon: Icon(Icons.chat_outlined)),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VendorDetailPage(
+                        vendorId: vendorId,
+                        vendorData: _vendorData!,
+                      ),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.store_mall_directory_outlined),
+              ),
+              IconButton(onPressed: () {}, icon: Icon(Icons.chat_outlined)),
               ElevatedButton(
                 onPressed: () {},
                 child: Text('Buy Now'),
               ),
               ElevatedButton(
                 onPressed: _currentUser == null ? null : () {
-      _addToCart(context);
-      },
+                  _addToCart(context);
+                },
                 child: Text('Add to Cart'),
               ),
             ],
@@ -495,7 +576,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'addedAt': FieldValue.serverTimestamp(),
         'vendorId': widget.product['vendorId'],
         'vendorName': _vendorData!['name'],
-        'storeName': _vendorData!['storeName'],
+        'storeName': _vendorData!['profile']['storeName'],
         'productName': _productName,
       });
 
@@ -508,14 +589,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget _buildField(Map<String, dynamic> field) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            field['fieldName'],
+            field['fieldName']+'   : ',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          Text(field['value']),
+          Text(field['value'].toString()),
         ],
       ),
     );

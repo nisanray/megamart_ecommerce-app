@@ -6,7 +6,7 @@ import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 import '../orders/checkout_screen.dart';
 import 'category_screen.dart';
-import 'product_detail_page.dart'; // Import the ProductDetailPage
+import '../product/product_detail_page.dart'; // Import the ProductDetailPage
 // import 'checkout_page.dart'; // Import the CheckoutPage
 
 class CartScreen extends StatefulWidget {

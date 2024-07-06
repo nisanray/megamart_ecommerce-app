@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:megamart/views/nav_screens/widgets/banner_widget.dart';
 import 'package:megamart/views/nav_screens/widgets/category_text.dart';
 import 'package:megamart/views/nav_screens/widgets/search_input_widget.dart';
-import 'product_detail_page.dart';
+import '../product/product_detail_page.dart';
 import 'search_screen.dart'; // Import the SearchScreen
 
 class HomeScreen extends StatefulWidget {

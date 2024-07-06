@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../utils/location/location_picker.dart';
 import '../../utils/shared_styles.dart';
 import '../../utils/texformfield.dart';
-// import 'location_picker.dart'; // Import the LocationPicker
-// import 'custom_text_form_field.dart'; // Import the custom text form field widget
 
 class CheckoutPage extends StatefulWidget {
   final List<String> selectedItems;
@@ -22,18 +20,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   // Shipping address controllers
   final _shippingFullNameController = TextEditingController();
-  final _shippingCityController = TextEditingController();
-  final _shippingStateController = TextEditingController();
   final _shippingPostalCodeController = TextEditingController();
-  final _shippingCountryController = TextEditingController();
+  final _shippingCountryController = TextEditingController(text: 'Bangladesh');
   final _shippingPhoneNumberController = TextEditingController();
 
   // Billing address controllers
   final _billingFullNameController = TextEditingController();
-  final _billingCityController = TextEditingController();
-  final _billingStateController = TextEditingController();
   final _billingPostalCodeController = TextEditingController();
-  final _billingCountryController = TextEditingController();
+  final _billingCountryController = TextEditingController(text: 'Bangladesh');
   final _billingPhoneNumberController = TextEditingController();
 
   // Payment method
@@ -71,8 +65,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
   void _copyShippingToBilling() {
     setState(() {
       _billingFullNameController.text = _shippingFullNameController.text;
-      _billingCityController.text = _shippingCityController.text;
-      _billingStateController.text = _shippingStateController.text;
       _billingPostalCodeController.text = _shippingPostalCodeController.text;
       _billingCountryController.text = _shippingCountryController.text;
       _billingPhoneNumberController.text = _shippingPhoneNumberController.text;
@@ -177,12 +169,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   if (_formKey.currentState!.validate()) {
                     await _createOrder(context, currentUser, widget.selectedItems);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Checkout completed!')),
+                      SnackBar(content: Text('Order placed!!')),
                     );
                     Navigator.of(context).pop();
                   }
                 },
-                child: Text('Confirm Checkout'),
+                child: Text('Confirm Order'),
               ),
             ],
           ),
@@ -207,31 +199,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
           },
         ),
         CustomTextFormField(
-          controller: _shippingCityController,
-          label: 'City',
+          controller: _shippingPhoneNumberController,
+          label: 'Phone Number',
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your city';
-            }
-            return null;
-          },
-        ),
-        CustomTextFormField(
-          controller: _shippingStateController,
-          label: 'State',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your state';
-            }
-            return null;
-          },
-        ),
-        CustomTextFormField(
-          controller: _shippingPostalCodeController,
-          label: 'Postal Code',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your postal code';
+              return 'Please enter your phone number';
             }
             return null;
           },
@@ -246,22 +218,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
             return null;
           },
         ),
-        CustomTextFormField(
-          controller: _shippingPhoneNumberController,
-          label: 'Phone Number',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your phone number';
-            }
-            return null;
-          },
-        ),
         LocationPicker(
           onLocationChanged: _updateShippingLocation,
           initialDivision: _shippingDivision,
           initialDistrict: _shippingDistrict,
           initialUpazila: _shippingUpazila,
           initialArea: _shippingArea,
+        ),
+        CustomTextFormField(
+          controller: _shippingPostalCodeController,
+          label: 'Postal Code',
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your postal code';
+            }
+            return null;
+          },
         ),
       ],
     );
@@ -283,31 +255,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
           },
         ),
         CustomTextFormField(
-          controller: _billingCityController,
-          label: 'City',
+          controller: _billingPhoneNumberController,
+          label: 'Phone Number',
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your city';
-            }
-            return null;
-          },
-        ),
-        CustomTextFormField(
-          controller: _billingStateController,
-          label: 'State',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your state';
-            }
-            return null;
-          },
-        ),
-        CustomTextFormField(
-          controller: _billingPostalCodeController,
-          label: 'Postal Code',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your postal code';
+              return 'Please enter your phone number';
             }
             return null;
           },
@@ -322,22 +274,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
             return null;
           },
         ),
-        CustomTextFormField(
-          controller: _billingPhoneNumberController,
-          label: 'Phone Number',
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your phone number';
-            }
-            return null;
-          },
-        ),
         LocationPicker(
           onLocationChanged: _updateBillingLocation,
           initialDivision: _billingDivision,
           initialDistrict: _billingDistrict,
           initialUpazila: _billingUpazila,
           initialArea: _billingArea,
+        ),
+        CustomTextFormField(
+          controller: _billingPostalCodeController,
+          label: 'Postal Code',
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your postal code';
+            }
+            return null;
+          },
         ),
       ],
     );
@@ -356,7 +308,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             value: _paymentMethod,
             items: [
               DropdownMenuItem(value: 'Credit Card', child: Text('Credit Card')),
-              DropdownMenuItem(value: 'PayPal', child: Text('PayPal')),
+              DropdownMenuItem(value: 'bKash', child: Text('bKash')),
+              DropdownMenuItem(value: 'Nagad', child: Text('Nagad')),
+              DropdownMenuItem(value: 'Rocket', child: Text('Rocket')),
               DropdownMenuItem(value: 'Cash on Delivery', child: Text('Cash on Delivery')),
             ],
             onChanged: (value) {
@@ -413,8 +367,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     var shippingAddress = {
       'fullName': _shippingFullNameController.text,
-      'city': _shippingCityController.text,
-      'state': _shippingStateController.text,
       'postalCode': _shippingPostalCodeController.text,
       'country': _shippingCountryController.text,
       'phoneNumber': _shippingPhoneNumberController.text,
@@ -426,8 +378,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     var billingAddress = {
       'fullName': _billingFullNameController.text,
-      'city': _billingCityController.text,
-      'state': _billingStateController.text,
       'postalCode': _billingPostalCodeController.text,
       'country': _billingCountryController.text,
       'phoneNumber': _billingPhoneNumberController.text,
@@ -448,7 +398,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       'shippingAddress': shippingAddress,
       'billingAddress': billingAddress,
       'totalAmount': totalAmount,
-      'currency': 'USD',
+      'currency': 'BDT',
       'items': orderItems,
       'shippingMethod': 'Standard Shipping', // Replace with actual shipping method
       'trackingNumber': '',
@@ -456,7 +406,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       'notes': '',
       'orderHistory': [
         {
-          'status': 'Order Placed',
+          'status': 'Pending',
           'timestamp': Timestamp.now(),
           'notes': ''
         }

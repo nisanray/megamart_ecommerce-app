@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'product_detail_page.dart';
+import '../product/product_detail_page.dart';
 
 class CategoryProductsPage extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> category;

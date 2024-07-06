@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:megamart/views/nav_screens/extra_search_screen.dart';
 import '../main_screen.dart';
-import 'product_detail_page.dart';
+import '../product/product_detail_page.dart';
 // import 'main_screen.dart'; // Import the MainScreen
 import 'widgets/search_input_widget.dart'; // Import the SearchInputWidget
 
