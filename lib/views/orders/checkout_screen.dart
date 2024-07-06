@@ -406,7 +406,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       'notes': '',
       'orderHistory': [
         {
-          'status': 'Pending',
+          'status': 'Order Placed',
           'timestamp': Timestamp.now(),
           'notes': ''
         }
