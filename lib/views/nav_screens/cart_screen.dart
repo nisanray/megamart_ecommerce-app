@@ -4,8 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:megamart/utils/custom_button.dart';
 import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
+import '../orders/checkout_screen.dart';
 import 'category_screen.dart';
 import 'product_detail_page.dart'; // Import the ProductDetailPage
+// import 'checkout_page.dart'; // Import the CheckoutPage
 
 class CartScreen extends StatefulWidget {
   CartScreen({super.key});
@@ -49,11 +51,17 @@ class _CartScreenState extends State<CartScreen> {
     _toggleSelectionMode();
   }
 
-  Future<void> _checkoutSelectedItems() async {
-    // Handle the checkout logic here
-    // This is a placeholder function for the checkout process
-    // You can integrate your checkout logic here
-    _toggleSelectionMode();
+  void _checkoutSelectedItems() {
+    if (_selectedItems.isNotEmpty) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => CheckoutPage(selectedItems: _selectedItems.toList()),
+        ),
+      ).then((value) {
+        // Refresh the cart screen after returning from checkout
+        setState(() {});
+      });
+    }
   }
 
   @override

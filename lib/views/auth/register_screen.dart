@@ -132,7 +132,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                           ],
                         ),
                         SizedBox(height: space),
-                        CustomTextFormField(
+                        CustomTextFormFields(
                           onChanged: (value) {
                             fullName = value;
                           },
@@ -148,7 +148,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                           },
                         ),
                         SizedBox(height: space),
-                        CustomTextFormField(
+                        CustomTextFormFields(
                           onChanged: (value) {
                             email = value;
                           },
@@ -167,7 +167,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                           },
                         ),
                         SizedBox(height: space),
-                        CustomTextFormField(
+                        CustomTextFormFields(
                           onChanged: (value) {
                             phoneNumber = value;
                           },
@@ -186,7 +186,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                           },
                         ),
                         SizedBox(height: space),
-                        CustomTextFormField(
+                        CustomTextFormFields(
                           onChanged: (value) {
                             password = value;
                           },

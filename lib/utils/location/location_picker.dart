@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import '../shared_styles.dart';
 import 'location_models.dart';
 import 'location_service.dart';
+// import 'shared_styles.dart'; // Import the shared styling function
 
 class LocationPicker extends StatefulWidget {
   final ValueChanged<String?>? onAddressChanged;
-  final Function(String?, String?, String?, String?)? onLocationChanged; // Callback to update location info
+  final Function(String?, String?, String?, String?)? onLocationChanged;
 
-  LocationPicker({Key? key, this.onAddressChanged, this.onLocationChanged, String? initialDivision, String? initialDistrict, String? initialUpazila, String? initialArea}) : super(key: key);
+  LocationPicker({
+    Key? key,
+    this.onAddressChanged,
+    this.onLocationChanged,
+    String? initialDivision,
+    String? initialDistrict,
+    String? initialUpazila,
+    String? initialArea,
+  }) : super(key: key);
 
   @override
   _LocationPickerState createState() => _LocationPickerState();
@@ -25,7 +35,7 @@ class _LocationPickerState extends State<LocationPicker> {
   String? selectedDivisionId;
   String? selectedDistrictId;
   String? selectedUpazilaId;
-  String? selectedArea; // Add selected area
+  String? selectedArea;
 
   @override
   void initState() {
@@ -47,7 +57,7 @@ class _LocationPickerState extends State<LocationPicker> {
       selectedUpazilaId = null;
       filteredDistricts = districts.where((district) => district.divisionId == id).toList();
       filteredUpazilas = [];
-      selectedArea = null; // Reset selected area when division changes
+      selectedArea = null;
       widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
       widget.onAddressChanged?.call(''); // Clear address when division changes
     });
@@ -58,12 +68,10 @@ class _LocationPickerState extends State<LocationPicker> {
       selectedDistrictId = id;
       selectedUpazilaId = null;
       filteredUpazilas = upazilas.where((upazila) => upazila.districtId == id).toList();
-      selectedArea = null; // Reset selected area when district changes
+      selectedArea = null;
       widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
-      // Update address based on district selection
       if (filteredDistricts.isNotEmpty) {
-        District selectedDistrictObject =
-        filteredDistricts.firstWhere((element) => element.id == id);
+        District selectedDistrictObject = filteredDistricts.firstWhere((element) => element.id == id);
         widget.onAddressChanged?.call(selectedDistrictObject.name);
       }
     });
@@ -72,12 +80,10 @@ class _LocationPickerState extends State<LocationPicker> {
   void onUpazilaChanged(String? id) {
     setState(() {
       selectedUpazilaId = id;
-      selectedArea = null; // Reset selected area when upazila changes
+      selectedArea = null;
       widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
-      // Update address based on upazila selection
       if (filteredUpazilas.isNotEmpty) {
-        Upazila selectedUpazilaObject =
-        filteredUpazilas.firstWhere((element) => element.id == id);
+        Upazila selectedUpazilaObject = filteredUpazilas.firstWhere((element) => element.id == id);
         widget.onAddressChanged?.call(selectedUpazilaObject.name);
       }
     });
@@ -107,7 +113,8 @@ class _LocationPickerState extends State<LocationPicker> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+
       children: [
         _buildDropdown(
           label: 'Select Division',
@@ -145,14 +152,17 @@ class _LocationPickerState extends State<LocationPicker> {
           onChanged: onUpazilaChanged,
         ),
         SizedBox(height: 16),
-        TextFormField(
-          decoration: InputDecoration(labelText: 'Enter Area'),
-          onChanged: (value) {
-            setState(() {
-              selectedArea = value;
-              widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
-            });
-          },
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 500),
+          child: TextFormField(
+            decoration: inputDecoration('Address line'),
+            onChanged: (value) {
+              setState(() {
+                selectedArea = value;
+                widget.onLocationChanged?.call(selectedDivisionName, selectedDistrictName, selectedUpazilaName, selectedArea);
+              });
+            },
+          ),
         ),
       ],
     );
@@ -171,14 +181,7 @@ class _LocationPickerState extends State<LocationPicker> {
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 500),
           child: DropdownButtonFormField<String>(
-            decoration: InputDecoration(
-              labelText: label,
-              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
+            decoration: inputDecoration(label),
             isDense: true,
             isExpanded: true,
             value: value,

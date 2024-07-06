@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/utils/colors.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormFields extends StatelessWidget {
   // Properties
   final String labelText; // Required: Label text for the TextFormField
   final String hintText; // Required: Hint text for the TextFormField
@@ -18,7 +18,7 @@ class CustomTextFormField extends StatelessWidget {
   final IconData? suffixIcon;
   final VoidCallback? suffixIconOnTap;
   // Constructor
-  const CustomTextFormField({
+  const CustomTextFormFields({
     Key? key,
     required this.labelText,
     required this.hintText,
