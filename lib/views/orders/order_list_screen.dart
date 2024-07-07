@@ -64,7 +64,7 @@ class OrderListScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Order Status: ${order['orderStatus']}'),
-                        Text('Total Amount: \$${order['totalAmount'].toString()}'),
+                        Text('Total Amount: \৳${order['totalAmount'].toString()}'),
                         SizedBox(height: 8.0),
                         Text('Items:'),
                         ...orderItems.map((item) {

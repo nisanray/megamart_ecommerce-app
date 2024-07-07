@@ -210,9 +210,9 @@ class _CartScreenState extends State<CartScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text('Store: $storeName'),
-                                        Text('Offer Price: \$${offerPrice.toString()}'),
-                                        Text('Regular Price: \$${regularUnitPrice.toStringAsFixed(2)}'),
-                                        Text('Total: \$${totalPrice.toStringAsFixed(2)}',
+                                        Text('Offer Price: \৳${offerPrice.toString()}'),
+                                        Text('Regular Price: \৳${regularUnitPrice.toStringAsFixed(2)}'),
+                                        Text('Total: \৳${totalPrice.toStringAsFixed(2)}',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                         IconButton(

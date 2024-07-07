@@ -202,10 +202,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('\$$_offerPrice', style: TextStyle(fontSize: 30)),
+                      Text('\৳$_offerPrice', style: TextStyle(fontSize: 30)),
                       SizedBox(width: 10),
                       Text(
-                        '\$$_regularPrice',
+                        '\৳$_regularPrice',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.red,
@@ -283,7 +283,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
-              height: 100,
+              // height: ,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -304,35 +304,41 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   Row(
                     children: [
                       Text(
-                        'Delivery       ',
+                        'Delivery   ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.approvalIcon, height: 25, color: Colors.deepPurpleAccent.shade700),
+                      Image.asset(AssetsLink.approvalIcon, height: 18, color: Colors.deepPurpleAccent.shade700),
+                      Text('  Standard Delivery , 5-7 Days ,  120\৳',style: TextStyle(fontSize: 15),)
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
                       Text(
-                        'Service        ',
+                        'Service    ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Image.asset(AssetsLink.leftArrowInCircleIcon, height: 25, color: Colors.deepPurpleAccent.shade700),
+                      Image.asset(AssetsLink.leftArrowInCircleIcon, height: 18, color: Colors.deepPurpleAccent.shade700),
+                      Text('  7 Days Returns.',style: TextStyle(fontSize: 15),),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.30,
+                      ),
+                      Icon(Icons.arrow_forward_ios,size: 18,)
                     ],
                   ),
                   // Add delivery info here
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Add service info here
-                ],
-              ),
-            ),
+            // SizedBox(height: 10),
+            // Container(
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       // Add service info here
+            //     ],
+            //   ),
+            // ),
             SizedBox(height: 10),
             Container(
               height: 100,

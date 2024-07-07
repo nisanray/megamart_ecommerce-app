@@ -139,8 +139,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text('Quantity: $quantity'),
-                                      Text('Unit Price: \$${unitPrice.toStringAsFixed(2)}'),
-                                      Text('Total Price: \$${totalPrice.toStringAsFixed(2)}'),
+                                      Text('Unit Price: \৳${unitPrice.toStringAsFixed(2)}'),
+                                      Text('Total Price: \৳${totalPrice.toStringAsFixed(2)}'),
                                     ],
                                   ),
                                 ),
