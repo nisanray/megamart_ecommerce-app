@@ -5,6 +5,8 @@ import 'package:megamart/views/auth/login_screen.dart';
 import 'package:megamart/views/main_screen.dart';
 import 'firebase_options.dart';
 
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -17,6 +19,8 @@ Future<void> main() async {
 
   runApp(MyApp(isLoggedIn: isLoggedIn));
 }
+
+
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;
