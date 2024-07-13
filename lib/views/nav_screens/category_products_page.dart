@@ -5,7 +5,7 @@ import '../product/product_detail_page.dart';
 class CategoryProductsPage extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> category;
 
-  const CategoryProductsPage({Key? key, required this.category}) : super(key: key);
+  const CategoryProductsPage({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CategoryProductsPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               category['name'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -38,13 +38,13 @@ class CategoryProductsPage extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Text('No products found for this category.');
+          return const Text('No products found for this category.');
         }
 
         var products = snapshot.data!.docs;
@@ -67,19 +67,19 @@ class CategoryProductsPage extends StatelessWidget {
                 if (vendorSnapshot.connectionState == ConnectionState.waiting) {
                   return ListTile(
                     title: Text(productName),
-                    subtitle: Text('Loading vendor info...'),
+                    subtitle: const Text('Loading vendor info...'),
                   );
                 }
                 if (vendorSnapshot.hasError) {
                   return ListTile(
                     title: Text(productName),
-                    subtitle: Text('Error loading vendor info'),
+                    subtitle: const Text('Error loading vendor info'),
                   );
                 }
                 if (!vendorSnapshot.hasData || !vendorSnapshot.data!.exists) {
                   return ListTile(
                     title: Text(productName),
-                    subtitle: Text('Vendor not found'),
+                    subtitle: const Text('Vendor not found'),
                   );
                 }
 
@@ -95,7 +95,7 @@ class CategoryProductsPage extends StatelessWidget {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Price: \$${productPrice}'),
+                      Text('Price: \$$productPrice'),
                       Text('Vendor: $vendorName'),
                       Text('Store: $storeName'),
                     ],

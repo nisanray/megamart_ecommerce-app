@@ -9,7 +9,7 @@ import '../../utils/texformfield.dart';
 class CheckoutPage extends StatefulWidget {
   final List<String> selectedItems;
 
-  CheckoutPage({required this.selectedItems});
+  const CheckoutPage({super.key, required this.selectedItems});
 
   @override
   _CheckoutPageState createState() => _CheckoutPageState();
@@ -82,9 +82,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
     if (currentUser == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Checkout'),
+          title: const Text('Checkout'),
         ),
-        body: Center(
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       );
@@ -92,7 +92,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkout'),
+        title: const Text('Checkout'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -108,7 +108,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         future: FirebaseFirestore.instance.collection('cartItems').doc(cartItemId).get(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           }
                           var cartItem = snapshot.data!.data() as Map<String, dynamic>;
                           var productId = cartItem['productId'];
@@ -118,7 +118,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             future: FirebaseFirestore.instance.collection('products').doc(productId).get(),
                             builder: (context, productSnapshot) {
                               if (!productSnapshot.hasData) {
-                                return Center(child: CircularProgressIndicator());
+                                return const Center(child: CircularProgressIndicator());
                               }
                               var productData = productSnapshot.data!.data() as Map<String, dynamic>;
                               var productName = productData['fixedFields']
@@ -131,7 +131,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               var totalPrice = unitPrice * quantity;
 
                               return Card(
-                                margin: EdgeInsets.symmetric(vertical: 8.0),
+                                margin: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: ListTile(
                                   leading: Image.network(productImageUrl, width: 50, height: 50, fit: BoxFit.cover),
                                   title: Text(productName),
@@ -139,8 +139,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text('Quantity: $quantity'),
-                                      Text('Unit Price: \৳${unitPrice.toStringAsFixed(2)}'),
-                                      Text('Total Price: \৳${totalPrice.toStringAsFixed(2)}'),
+                                      Text('Unit Price: ৳${unitPrice.toStringAsFixed(2)}'),
+                                      Text('Total Price: ৳${totalPrice.toStringAsFixed(2)}'),
                                     ],
                                   ),
                                 ),
@@ -149,17 +149,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           );
                         },
                       );
-                    }).toList(),
-                    SizedBox(height: 20),
+                    }),
+                    const SizedBox(height: 20),
                     _buildShippingAddressForm(),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _copyShippingToBilling,
-                      child: Text('Copy Shipping Address to Billing Address'),
+                      child: const Text('Copy Shipping Address to Billing Address'),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     _buildBillingAddressForm(),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     _buildPaymentMethodField(),
                   ],
                 ),
@@ -169,12 +169,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   if (_formKey.currentState!.validate()) {
                     await _createOrder(context, currentUser, widget.selectedItems);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Order placed!!')),
+                      const SnackBar(content: Text('Order placed!!')),
                     );
                     Navigator.of(context).pop();
                   }
                 },
-                child: Text('Confirm Order'),
+                child: const Text('Confirm Order'),
               ),
             ],
           ),
@@ -187,7 +187,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Shipping Address', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text('Shipping Address', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         CustomTextFormField(
           controller: _shippingFullNameController,
           label: 'Full Name',
@@ -243,7 +243,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Billing Address', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text('Billing Address', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         CustomTextFormField(
           controller: _billingFullNameController,
           label: 'Full Name',
@@ -299,14 +299,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Payment Method', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        SizedBox(height: 8),
+        const Text('Payment Method', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: DropdownButtonFormField<String>(
             decoration: inputDecoration('Select Payment Method'),
             value: _paymentMethod,
-            items: [
+            items: const [
               DropdownMenuItem(value: 'Credit Card', child: Text('Credit Card')),
               DropdownMenuItem(value: 'bKash', child: Text('bKash')),
               DropdownMenuItem(value: 'Nagad', child: Text('Nagad')),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class BannerWidget extends StatefulWidget {
+  const BannerWidget({super.key});
+
   @override
   State<BannerWidget> createState() => _BannerWidgetState();
 }
@@ -61,17 +63,17 @@ class _BannerWidgetState extends State<BannerWidget> {
               imageUrl: _bannerImage[index],
               progressIndicatorBuilder: (context, url, downloadProgress) =>
                   Shimmer(
-                    duration: Duration(seconds: 3), //Default value
-                    interval: Duration(seconds: 5), //Default value: Duration(seconds: 0)
+                    duration: const Duration(seconds: 3), //Default value
+                    interval: const Duration(seconds: 5), //Default value: Duration(seconds: 0)
                     color: Colors.white, //Default value
                     colorOpacity: 0, //Default value
                     enabled: true, //Default value
-                    direction: ShimmerDirection.fromLTRB(),  //Default Value
+                    direction: const ShimmerDirection.fromLTRB(),  //Default Value
                     child: Container(
                       color: Colors.white,
                     ),
                   ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             );
           },
         ),

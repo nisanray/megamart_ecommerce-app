@@ -8,15 +8,15 @@ class LocationPicker extends StatefulWidget {
   final ValueChanged<String?>? onAddressChanged;
   final Function(String?, String?, String?, String?)? onLocationChanged;
 
-  LocationPicker({
-    Key? key,
+  const LocationPicker({
+    super.key,
     this.onAddressChanged,
     this.onLocationChanged,
     String? initialDivision,
     String? initialDistrict,
     String? initialUpazila,
     String? initialArea,
-  }) : super(key: key);
+  });
 
   @override
   _LocationPickerState createState() => _LocationPickerState();
@@ -116,7 +116,7 @@ class _LocationPickerState extends State<LocationPicker> {
       crossAxisAlignment: CrossAxisAlignment.center,
 
       children: [
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         _buildDropdown(
           label: 'Select Division',
           value: selectedDivisionId,
@@ -128,7 +128,7 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onDivisionChanged,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         _buildDropdown(
           label: 'Select District',
           value: selectedDistrictId,
@@ -140,7 +140,7 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onDistrictChanged,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         _buildDropdown(
           label: 'Select Upazila',
           value: selectedUpazilaId,
@@ -152,9 +152,9 @@ class _LocationPickerState extends State<LocationPicker> {
           }).toList(),
           onChanged: onUpazilaChanged,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: TextFormField(
             decoration: inputDecoration('Address line'),
             onChanged: (value) {
@@ -180,7 +180,7 @@ class _LocationPickerState extends State<LocationPicker> {
       children: [
         // SizedBox(height: 8),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: DropdownButtonFormField<String>(
             decoration: inputDecoration(label),
             isDense: true,

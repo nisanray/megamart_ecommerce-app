@@ -5,10 +5,10 @@ class QuantitySelector extends StatefulWidget {
   final ValueChanged<int> onQuantityChanged;
 
   const QuantitySelector({
-    Key? key,
+    super.key,
     required this.initialQuantity,
     required this.onQuantityChanged,
-  }) : super(key: key);
+  });
 
   @override
   _QuantitySelectorState createState() => _QuantitySelectorState();
@@ -55,7 +55,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          icon: Icon(Icons.remove),
+          icon: const Icon(Icons.remove),
           onPressed: _decrementQuantity,
         ),
         SizedBox(
@@ -64,7 +64,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             initialValue: _quantity.toString(),
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               // contentPadding: EdgeInsets.symmetric(vertical: 10),
               border: OutlineInputBorder(),
             ),
@@ -72,7 +72,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           ),
         ),
         IconButton(
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           onPressed: _incrementQuantity,
         ),
       ],

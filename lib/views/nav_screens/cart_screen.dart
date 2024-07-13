@@ -5,12 +5,11 @@ import 'package:megamart/utils/custom_button.dart';
 import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 import '../orders/checkout_screen.dart';
-import 'category_screen.dart';
 import '../product/product_detail_page.dart'; // Import the ProductDetailPage
 // import 'checkout_page.dart'; // Import the CheckoutPage
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+  const CartScreen({super.key});
   static const routeName = '/cart';
 
   @override
@@ -20,7 +19,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   User? _currentUser;
   bool _isSelectionMode = false;
-  Set<String> _selectedItems = Set<String>();
+  final Set<String> _selectedItems = <String>{};
 
   @override
   void initState() {
@@ -69,9 +68,9 @@ class _CartScreenState extends State<CartScreen> {
     if (_currentUser == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('My Cart'),
+          title: const Text('My Cart'),
         ),
-        body: Center(
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       );
@@ -79,16 +78,16 @@ class _CartScreenState extends State<CartScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Cart'),
+        title: const Text('My Cart'),
         actions: [
           if (_isSelectionMode)
             IconButton(
-              icon: Icon(Icons.close),
+              icon: const Icon(Icons.close),
               onPressed: _toggleSelectionMode,
             )
           else
             IconButton(
-              icon: Icon(Icons.select_all),
+              icon: const Icon(Icons.select_all),
               onPressed: _toggleSelectionMode,
             ),
         ],
@@ -100,7 +99,7 @@ class _CartScreenState extends State<CartScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
@@ -112,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
           var cartItems = snapshot.data!.docs;
 
           return ListView.builder(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: cartItems.length,
             itemBuilder: (context, index) {
               var cartItem = cartItems[index];
@@ -125,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
                 future: FirebaseFirestore.instance.collection('products').doc(productId).get(),
                 builder: (context, productSnapshot) {
                   if (productSnapshot.connectionState == ConnectionState.waiting) {
-                    return Card(
+                    return const Card(
                       margin: EdgeInsets.symmetric(vertical: 8.0),
                       child: ListTile(
                         title: Text('Loading...'),
@@ -133,7 +132,7 @@ class _CartScreenState extends State<CartScreen> {
                     );
                   }
                   if (productSnapshot.hasError) {
-                    return Card(
+                    return const Card(
                       margin: EdgeInsets.symmetric(vertical: 8.0),
                       child: ListTile(
                         title: Text('Error loading product info'),
@@ -141,7 +140,7 @@ class _CartScreenState extends State<CartScreen> {
                     );
                   }
                   if (!productSnapshot.hasData || !productSnapshot.data!.exists) {
-                    return Card(
+                    return const Card(
                       margin: EdgeInsets.symmetric(vertical: 8.0),
                       child: ListTile(
                         title: Text('Product not found'),
@@ -161,7 +160,7 @@ class _CartScreenState extends State<CartScreen> {
                   var totalPrice = unitPrice * quantity;
 
                   return Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -203,24 +202,24 @@ class _CartScreenState extends State<CartScreen> {
                                   ListTile(
                                     title: Text(
                                       productName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold, fontSize: 16),
                                     ),
                                     subtitle: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text('Store: $storeName'),
-                                        Text('Offer Price: \৳${offerPrice.toString()}'),
-                                        Text('Regular Price: \৳${regularUnitPrice.toStringAsFixed(2)}'),
-                                        Text('Total: \৳${totalPrice.toStringAsFixed(2)}',
-                                            style: TextStyle(
+                                        Text('Offer Price: ৳${offerPrice.toString()}'),
+                                        Text('Regular Price: ৳${regularUnitPrice.toStringAsFixed(2)}'),
+                                        Text('Total: ৳${totalPrice.toStringAsFixed(2)}',
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                         IconButton(
                                           padding: EdgeInsets.zero,
                                           icon: _selectedItems.contains(cartItem.id)
-                                              ? Icon(Icons.check_box,
+                                              ? const Icon(Icons.check_box,
                                               color: Colors.blue)
-                                              : Icon(Icons.check_box_outline_blank),
+                                              : const Icon(Icons.check_box_outline_blank),
                                           onPressed: () {
                                             _onItemSelect(cartItem.id);
                                           },
@@ -265,17 +264,17 @@ class _CartScreenState extends State<CartScreen> {
             ElevatedButton(
               onPressed: _removeSelectedItems,
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: Text('Delete', style: TextStyle(color: Colors.white)),
+              child: const Text('Delete', style: TextStyle(color: Colors.white)),
             ),
             ElevatedButton(
               onPressed: _checkoutSelectedItems,
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-              child: Text('Checkout', style: TextStyle(color: Colors.white)),
+              child: const Text('Checkout', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
       )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
     );
   }
 
@@ -285,13 +284,13 @@ class _CartScreenState extends State<CartScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(Icons.shopping_cart_outlined, size: 100, color: Colors.grey),
-          SizedBox(height: 20),
-          Text(
+          const Icon(Icons.shopping_cart_outlined, size: 100, color: Colors.grey),
+          const SizedBox(height: 20),
+          const Text(
             "Your shopping cart is empty.",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           CustomButton(
             color: Colors.blueAccent.shade700,
             widthPercentage: 0.5,
@@ -304,7 +303,7 @@ class _CartScreenState extends State<CartScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MainScreen(initialIndex: 1),
+                  builder: (context) => const MainScreen(initialIndex: 1),
                 ),
               );
             },

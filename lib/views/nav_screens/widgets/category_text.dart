@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../category_products_page.dart';
 
 class CategoryText extends StatefulWidget {
+  const CategoryText({super.key});
+
   @override
   _CategoryTextState createState() => _CategoryTextState();
 }
@@ -35,11 +37,11 @@ class _CategoryTextState extends State<CategoryText> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Categories",
             style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
           ),
-          Container(
+          SizedBox(
             height: 40,
             child: Row(
               children: [
@@ -55,7 +57,7 @@ class _CategoryTextState extends State<CategoryText> {
                         child: ActionChip(
                           label: Text(
                             category['name'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                           ),
@@ -86,9 +88,9 @@ class _CategoryTextState extends State<CategoryText> {
                     }
                     // Scroll to the new position
                     _scrollController.animateTo(newOffset,
-                        duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
                   },
-                  icon: Icon(Icons.arrow_forward_ios),
+                  icon: const Icon(Icons.arrow_forward_ios),
                 ),
               ],
             ),

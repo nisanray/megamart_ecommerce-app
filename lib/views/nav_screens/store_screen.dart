@@ -12,7 +12,7 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stores', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: const Text('Stores', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -21,7 +21,7 @@ class StoreScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
             print('Error retrieving vendor data: ${snapshot.error}');
@@ -29,13 +29,13 @@ class StoreScreen extends StatelessWidget {
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No stores found', style: TextStyle(fontSize: 18)));
+            return const Center(child: Text('No stores found', style: TextStyle(fontSize: 18)));
           }
 
           final stores = snapshot.data!.docs;
 
           return ListView.builder(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             itemCount: stores.length,
             itemBuilder: (context, index) {
               final storeData = stores[index];
@@ -43,7 +43,7 @@ class StoreScreen extends StatelessWidget {
 
               if (storeProfile == null) {
                 print('Missing profile data for store: ${storeData.id}');
-                return ListTile(
+                return const ListTile(
                   title: Text('Unknown Store'),
                   subtitle: Text('Missing profile data'),
                 );
@@ -81,23 +81,23 @@ class StoreScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: storeLogoUrl.isNotEmpty
                               ? Image.network(storeLogoUrl, width: 80, height: 80, fit: BoxFit.cover)
-                              : Icon(Icons.store, size: 80, color: Colors.grey),
+                              : const Icon(Icons.store, size: 80, color: Colors.grey),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 storeName,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 'Vendor: $vendorName',
                                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 'Address: $storeAddress',
                                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),

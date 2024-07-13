@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
   @override
@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  BannerWidget(),
-                  CategoryText(),
+                  const BannerWidget(),
+                  const CategoryText(),
                   const SizedBox(height: 20),
                   _buildRandomProducts(context),
                 ],
@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        '\$${productPrice}',
+                        '\$$productPrice',
                         style: const TextStyle(color: Colors.green, fontSize: 14),
                       ),
                     ),

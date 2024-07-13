@@ -54,7 +54,7 @@ class _AccountScreenState extends State<AccountScreen> {
           child: CircleAvatar(
             backgroundImage: _profilePictureUrl.isNotEmpty
                 ? NetworkImage(_profilePictureUrl)
-                : AssetImage('assets/default_profile.png') as ImageProvider,
+                : const AssetImage('assets/default_profile.png') as ImageProvider,
             radius: 20,
           ),
         ),
@@ -64,22 +64,22 @@ class _AccountScreenState extends State<AccountScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsView(),
+                  builder: (context) => const SettingsView(),
                 ),
               );
             },
-            icon: Icon(CupertinoIcons.settings),
+            icon: const Icon(CupertinoIcons.settings),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 3),
+            const SizedBox(height: 3),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.all(16.0),
-              child: Column(
+              padding: const EdgeInsets.all(16.0),
+              child: const Column(
                 children: [
                   SizedBox(height: 16),
                   Row(
@@ -129,16 +129,16 @@ class _AccountScreenState extends State<AccountScreen> {
             Container(
               child: Column(
                 children: [
-                  SizedBox(height: 3),
-                  Container(
+                  const SizedBox(height: 3),
+                  SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     child: Image.asset('assets/promo/promo.jpg', fit: BoxFit.cover),
                   ),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
                     child: Column(
@@ -146,22 +146,22 @@ class _AccountScreenState extends State<AccountScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('My Orders'),
+                            const Text('My Orders'),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => OrderListScreen(),
+                                    builder: (context) => const OrderListScreen(),
                                   ),
                                 );
                               },
-                              child: Text('View All >'),
+                              child: const Text('View All >'),
                             ),
                           ],
                         ),
-                        SizedBox(height: 16),
-                        Row(
+                        const SizedBox(height: 16),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Column(
@@ -190,8 +190,8 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 40),
-                        Row(
+                        const SizedBox(height: 40),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Column(
@@ -211,20 +211,20 @@ class _AccountScreenState extends State<AccountScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   Container(
                     color: Colors.white,
-                    child: ListTile(
+                    child: const ListTile(
                       leading: Icon(Icons.local_shipping),
                       title: Text('Track Package'),
                       subtitle: Text('Delivered > Your package has been delivered. Tap here to share a review'),
                     ),
                   ),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     color: Colors.white,
-                    child: Column(
+                    child: const Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,17 +244,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               color: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('My Services'),
-                  SizedBox(
+                  const Text('My Services'),
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -282,7 +282,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Row(

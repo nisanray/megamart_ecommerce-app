@@ -6,7 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String label;
   final String? Function(String?)? validator;
 
-  CustomTextFormField({
+  const CustomTextFormField({super.key, 
     required this.controller,
     required this.label,
     this.validator,
@@ -17,9 +17,9 @@ class CustomTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: TextFormField(
             controller: controller,
             decoration: inputDecoration(label), // Use the shared styling function

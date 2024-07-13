@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final double maxwidth;
   final VoidCallback onTap;
 
-  CustomButton({
+  const CustomButton({super.key, 
     required this.color,
     required this.widthPercentage,
     // required this.height,

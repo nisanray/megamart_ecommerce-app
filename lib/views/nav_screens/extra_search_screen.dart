@@ -10,9 +10,9 @@ class ExtraSearchScreen extends StatefulWidget {
   final String searchQuery;
 
   const ExtraSearchScreen({
-    Key? key,
+    super.key,
     required this.searchQuery,
-  }) : super(key: key);
+  });
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -20,7 +20,7 @@ class ExtraSearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<ExtraSearchScreen> {
   late int _selectedIndex;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -182,7 +182,7 @@ class _SearchScreenState extends State<ExtraSearchScreen> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Text(
-                                    '\$${productPrice}',
+                                    '\$$productPrice',
                                     style: const TextStyle(color: Colors.green, fontSize: 14),
                                   ),
                                 ),

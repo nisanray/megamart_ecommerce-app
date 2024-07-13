@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'order_details_screen.dart'; // Import the new screen
 
 class OrderListScreen extends StatelessWidget {
-  const OrderListScreen({Key? key}) : super(key: key);
+  const OrderListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class OrderListScreen extends StatelessWidget {
     if (currentUser == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('My Orders'),
+          title: const Text('My Orders'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Please log in to see your orders.'),
         ),
       );
@@ -23,7 +23,7 @@ class OrderListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Orders'),
+        title: const Text('My Orders'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -32,13 +32,13 @@ class OrderListScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           var orders = snapshot.data!.docs;
 
           if (orders.isEmpty) {
-            return Center(child: Text('No orders found.'));
+            return const Center(child: Text('No orders found.'));
           }
 
           return ListView.builder(
@@ -57,19 +57,19 @@ class OrderListScreen extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  margin: EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
                   child: ListTile(
                     title: Text('Order ID: ${orders[index].id}'),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Order Status: ${order['orderStatus']}'),
-                        Text('Total Amount: \৳${order['totalAmount'].toString()}'),
-                        SizedBox(height: 8.0),
-                        Text('Items:'),
+                        Text('Total Amount: ৳${order['totalAmount'].toString()}'),
+                        const SizedBox(height: 8.0),
+                        const Text('Items:'),
                         ...orderItems.map((item) {
                           return Text('${item['productName']} x ${item['quantity']}');
-                        }).toList(),
+                        }),
                       ],
                     ),
                   ),

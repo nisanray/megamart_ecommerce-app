@@ -8,7 +8,7 @@ import 'package:megamart/utils/show_snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInScreen extends StatefulWidget {
-  LogInScreen({Key? key}) : super(key: key);
+  const LogInScreen({super.key});
 
   @override
   _LogInScreenState createState() => _LogInScreenState();
@@ -58,13 +58,13 @@ class _LogInScreenState extends State<LogInScreen> {
                       color: Colors.deepPurpleAccent.shade700,
                       width: 250,
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       "Customer Login.",
                       style: TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     _buildTextFormField(
                       controller: emailController,
                       labelText: "Email",
@@ -83,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     _buildTextFormField(
                       controller: passwordController,
                       labelText: "Password",
@@ -107,13 +107,13 @@ class _LogInScreenState extends State<LogInScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonColor,
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 50, vertical: 15),
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       onPressed: _isLoading ? null : () {
@@ -122,7 +122,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         }
                       },
                       child: _isLoading
-                          ? SizedBox(
+                          ? const SizedBox(
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(
@@ -131,23 +131,23 @@ class _LogInScreenState extends State<LogInScreen> {
                               AppColors.white),
                         ),
                       )
-                          : Text('Login', style: TextStyle(color: Colors.white),),
+                          : const Text('Login', style: TextStyle(color: Colors.white),),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?"),
+                        const Text("Don't have an account?"),
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      CustomerRegistrationScreen()),
+                                      const CustomerRegistrationScreen()),
                             );
                           },
-                          child: Text('Register'),
+                          child: const Text('Register'),
                         ),
                       ],
                     ),
@@ -198,7 +198,7 @@ class _LogInScreenState extends State<LogInScreen> {
           borderRadius: BorderRadius.circular(10),
         ),
         labelStyle: TextStyle(color: Colors.deepPurpleAccent.shade700),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       ),
       onChanged: onChanged,
       validator: validator,
@@ -227,7 +227,7 @@ class _LogInScreenState extends State<LogInScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => MainScreen(),
+            builder: (context) => const MainScreen(),
           ));
       // Navigate to next screen or handle successful login action
     } else {

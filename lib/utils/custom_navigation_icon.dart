@@ -8,12 +8,12 @@ class CustomBottomNavigationItem extends StatelessWidget {
   final bool isSelected;
 
   const CustomBottomNavigationItem({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.onTap,
     this.isSelected = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

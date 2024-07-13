@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:megamart/utils/colors.dart';
 
 class CustomTextFormFields extends StatelessWidget {
   // Properties
@@ -19,7 +18,7 @@ class CustomTextFormFields extends StatelessWidget {
   final VoidCallback? suffixIconOnTap;
   // Constructor
   const CustomTextFormFields({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.hintText,
     this.prefixIcon,
@@ -32,7 +31,7 @@ class CustomTextFormFields extends StatelessWidget {
     this.focusNode, // Optional focus node
     this.autocorrect = true,
     required this.maxwidth, this.suffixIcon, this.suffixIconOnTap, // Defaults to enabling autocorrect
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ class CustomTextFormFields extends StatelessWidget {
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.blueAccent,
             fontWeight: FontWeight.bold,
           ),
@@ -61,7 +60,7 @@ class CustomTextFormFields extends StatelessWidget {
             fontStyle: FontStyle.italic,
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Color(0xff879fff),
               width: 2.0,
             ),
@@ -81,7 +80,7 @@ class CustomTextFormFields extends StatelessWidget {
           ): null,
           filled: true,
           fillColor: Colors.blue[50],
-          contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         ),
       ),
     );

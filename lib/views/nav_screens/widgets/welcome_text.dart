@@ -11,7 +11,7 @@ class WelcomeText extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Howdy , What are you\n looking for 👀',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
 
             ),
@@ -20,6 +20,6 @@ class WelcomeText extends StatelessWidget {
             ),
           ],
         ),
-      );;
+      );
   }
 }

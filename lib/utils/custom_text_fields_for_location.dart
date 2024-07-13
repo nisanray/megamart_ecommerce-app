@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/utils/colors.dart'; // Adjust import as per your project structure
+// Adjust import as per your project structure
 
 class CustomTextField extends StatelessWidget {
   // Properties
@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
 
   // Constructor
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.hintText,
     this.prefixIcon,
@@ -35,7 +35,7 @@ class CustomTextField extends StatelessWidget {
     required this.maxwidth,
     this.suffixIcon,
     this.suffixIconOnTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class CustomTextField extends StatelessWidget {
           ),
           filled: true,
           fillColor: Colors.blue[50],
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
       ),
     );

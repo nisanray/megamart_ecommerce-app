@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:megamart/utils/location/location_picker.dart';
 
 class AccountInformationView extends StatefulWidget {
+  const AccountInformationView({super.key});
+
   @override
   _AccountInformationViewState createState() => _AccountInformationViewState();
 }
@@ -16,17 +18,17 @@ class _AccountInformationViewState extends State<AccountInformationView> {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _fullNameController = TextEditingController();
-  TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
-  TextEditingController _bioController = TextEditingController();
-  TextEditingController _genderController = TextEditingController();
-  TextEditingController _linkedinController = TextEditingController();
-  TextEditingController _twitterController = TextEditingController();
-  TextEditingController _facebookController = TextEditingController();
-  TextEditingController _emergencyContactNameController = TextEditingController();
-  TextEditingController _emergencyContactPhoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _linkedinController = TextEditingController();
+  final TextEditingController _twitterController = TextEditingController();
+  final TextEditingController _facebookController = TextEditingController();
+  final TextEditingController _emergencyContactNameController = TextEditingController();
+  final TextEditingController _emergencyContactPhoneController = TextEditingController();
 
   Uint8List? _profileImage;
   bool _isLoading = false;
@@ -105,7 +107,7 @@ class _AccountInformationViewState extends State<AccountInformationView> {
             'updatedAt': Timestamp.now(),
           });
 
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile updated successfully')));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Profile updated successfully')));
         }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to update profile: $e')));
@@ -145,8 +147,8 @@ class _AccountInformationViewState extends State<AccountInformationView> {
   }
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() async {
@@ -168,10 +170,10 @@ class _AccountInformationViewState extends State<AccountInformationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account Information'),
+        title: const Text('Account Information'),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -180,7 +182,7 @@ class _AccountInformationViewState extends State<AccountInformationView> {
             children: [
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -190,7 +192,7 @@ class _AccountInformationViewState extends State<AccountInformationView> {
               ),
               TextFormField(
                 controller: _fullNameController,
-                decoration: InputDecoration(labelText: 'Full Name'),
+                decoration: const InputDecoration(labelText: 'Full Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your full name';
@@ -200,7 +202,7 @@ class _AccountInformationViewState extends State<AccountInformationView> {
               ),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: InputDecoration(labelText: 'Phone Number'),
+                decoration: const InputDecoration(labelText: 'Phone Number'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your phone number';
@@ -227,43 +229,43 @@ class _AccountInformationViewState extends State<AccountInformationView> {
               // ),
               TextFormField(
                 controller: _bioController,
-                decoration: InputDecoration(labelText: 'Bio'),
+                decoration: const InputDecoration(labelText: 'Bio'),
               ),
               TextFormField(
                 controller: _genderController,
-                decoration: InputDecoration(labelText: 'Gender'),
+                decoration: const InputDecoration(labelText: 'Gender'),
               ),
               TextFormField(
                 controller: _linkedinController,
-                decoration: InputDecoration(labelText: 'LinkedIn'),
+                decoration: const InputDecoration(labelText: 'LinkedIn'),
               ),
               TextFormField(
                 controller: _twitterController,
-                decoration: InputDecoration(labelText: 'Twitter'),
+                decoration: const InputDecoration(labelText: 'Twitter'),
               ),
               TextFormField(
                 controller: _facebookController,
-                decoration: InputDecoration(labelText: 'Facebook'),
+                decoration: const InputDecoration(labelText: 'Facebook'),
               ),
               TextFormField(
                 controller: _emergencyContactNameController,
-                decoration: InputDecoration(labelText: 'Emergency Contact Name'),
+                decoration: const InputDecoration(labelText: 'Emergency Contact Name'),
               ),
               TextFormField(
                 controller: _emergencyContactPhoneController,
-                decoration: InputDecoration(labelText: 'Emergency Contact Phone'),
+                decoration: const InputDecoration(labelText: 'Emergency Contact Phone'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: _pickImage,
-                child: Text('Pick Profile Image'),
+                child: const Text('Pick Profile Image'),
               ),
               if (_profileImage != null)
                 Image.memory(_profileImage!),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _updateProfile,
-                child: Text('Update Profile'),
+                child: const Text('Update Profile'),
               ),
             ],
           ),

@@ -11,7 +11,7 @@ class MainScreen extends StatefulWidget {
 
   final int initialIndex;
 
-  const MainScreen({Key? key, this.initialIndex = 0}) : super(key: key);
+  const MainScreen({super.key, this.initialIndex = 0});
 
   @override
   MainScreenState createState() => MainScreenState();
@@ -42,25 +42,25 @@ class MainScreenState extends State<MainScreen> {
   void _setSelectedItem(int index) {
     switch (index) {
       case 0:
-        _selectedItem = HomeScreen();
+        _selectedItem = const HomeScreen();
         break;
       case 1:
-        _selectedItem = CategoryScreen();
+        _selectedItem = const CategoryScreen();
         break;
       case 2:
-        _selectedItem = StoreScreen();
+        _selectedItem = const StoreScreen();
         break;
       case 3:
-        _selectedItem = CartScreen();
+        _selectedItem = const CartScreen();
         break;
       case 4:
-        _selectedItem = SearchScreen(searchQuery: ''); // Ensure empty query for initial load
+        _selectedItem = const SearchScreen(searchQuery: ''); // Ensure empty query for initial load
         break;
       case 5:
-        _selectedItem = AccountScreen();
+        _selectedItem = const AccountScreen();
         break;
       default:
-        _selectedItem = HomeScreen();
+        _selectedItem = const HomeScreen();
     }
   }
 

@@ -7,7 +7,7 @@ class VendorDetailPage extends StatefulWidget {
   final String vendorId;
   final Map<String, dynamic> vendorData;
 
-  const VendorDetailPage({Key? key, required this.vendorId, required this.vendorData}) : super(key: key);
+  const VendorDetailPage({super.key, required this.vendorId, required this.vendorData});
 
   @override
   _VendorDetailPageState createState() => _VendorDetailPageState();
@@ -65,74 +65,74 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
                 backgroundColor: Colors.grey[200],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Center(
               child: Text(
                 profile?['storeName'] ?? 'N/A',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Center(
               child: Text(
                 'Ratings: ${profile?['ratings']?.toString() ?? 'N/A'} stars',
                 style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
               ),
             ),
-            SizedBox(height: 20),
-            Divider(color: Colors.grey),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
+            const Divider(color: Colors.grey),
+            const SizedBox(height: 10),
             Text(
               'Vendor Details',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.grey.shade900),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Card(
-              margin: EdgeInsets.symmetric(vertical: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5),
               child: ListTile(
                 leading: Icon(Icons.email, color: Colors.grey.shade700),
-                title: Text('Email'),
+                title: const Text('Email'),
                 subtitle: Text(widget.vendorData['email'] ?? 'N/A'),
               ),
             ),
             Card(
-              margin: EdgeInsets.symmetric(vertical: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5),
               child: ListTile(
                 leading: Icon(Icons.phone, color: Colors.grey.shade700),
-                title: Text('Phone'),
+                title: const Text('Phone'),
                 subtitle: Text(profile?['phone'] ?? 'N/A'),
               ),
             ),
             Card(
-              margin: EdgeInsets.symmetric(vertical: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5),
               child: ListTile(
                 leading: Icon(Icons.location_on, color: Colors.grey.shade700),
-                title: Text('Address'),
+                title: const Text('Address'),
                 subtitle: Text(profile?['address'] ?? 'N/A'),
               ),
             ),
-            SizedBox(height: 20),
-            Divider(color: Colors.grey),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
+            const Divider(color: Colors.grey),
+            const SizedBox(height: 10),
             Text(
               'Products',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.grey.shade900),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             FutureBuilder<List<DocumentSnapshot>>(
               future: _fetchVendorProducts(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Text('No products found.');
+                  return const Text('No products found.');
                 }
 
                 return ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     var product = snapshot.data![index];
@@ -141,7 +141,7 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
                     var productImageUrl = fixedFields.firstWhere((field) => field['fieldName'] == 'Product Image URL')['value'];
 
                     return Card(
-                      margin: EdgeInsets.symmetric(vertical: 5),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(

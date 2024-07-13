@@ -14,7 +14,7 @@ import 'dart:io';
 import '../../utils/show_snackbar.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
-  CustomerRegistrationScreen({super.key});
+  const CustomerRegistrationScreen({super.key});
 
   @override
   State<CustomerRegistrationScreen> createState() => _CustomerRegistrationScreenState();
@@ -52,7 +52,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
         } else {
           showSnackBar(context, 'Your account created successfully', bgColor: Colors.blueAccent.shade700);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-            return MainScreen();
+            return const MainScreen();
           }));
         }
 // Rest of your existing logic...
@@ -98,7 +98,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             color: AppColors.backgroundColor.withOpacity(0.08),
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Form(
               key: _formkey,
               child: Stack(
@@ -111,7 +111,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height*0.12,
                         ),
-                        Text("Create customer account", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+                        const Text("Create customer account", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
                         SizedBox(height: space),
                         Stack(
                           children: [
@@ -128,7 +128,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                                 right: 20,
                                 top: 15,
                                 child: GestureDetector(
-                                  onTap:() => _pickImage(ImageSource.gallery), child: Icon(CupertinoIcons.photo_on_rectangle,color: Colors.white,)))
+                                  onTap:() => _pickImage(ImageSource.gallery), child: const Icon(CupertinoIcons.photo_on_rectangle,color: Colors.white,)))
                           ],
                         ),
                         SizedBox(height: space),
@@ -222,18 +222,18 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                             _signUpCustomer();
                           },
                         ),
-                        SizedBox(height: 50),
+                        const SizedBox(height: 50),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Already have an account?'),
+                            const Text('Already have an account?'),
                             TextButton(
                               onPressed: () {
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                  return LogInScreen();
+                                  return const LogInScreen();
                                 }));
                               },
-                              child: Text('Login'),
+                              child: const Text('Login'),
                             ),
                           ],
                         ),
@@ -241,7 +241,7 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                     ),
                   ),
                   if (_isLoading)
-                    Center(
+                    const Center(
                       child: Positioned(
                         child: CustomCircularProgressIndicator()
                       ),

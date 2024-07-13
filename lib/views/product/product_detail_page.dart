@@ -2,16 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:megamart/utils/assets_link.dart';
-import 'package:megamart/views/nav_screens/cart_screen.dart';
 
-import '../../utils/quantity_selector.dart';
 import '../main_screen.dart';
 import 'vendor_detail_page.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final DocumentSnapshot product;
 
-  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
+  const ProductDetailPage({super.key, required this.product});
 
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
@@ -107,7 +105,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Expanded(
+            const Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search',
@@ -116,16 +114,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.share),
+              icon: const Icon(Icons.share),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MainScreen(initialIndex: 3),
+                    builder: (context) => const MainScreen(initialIndex: 3),
                   ),
                 );
               },
@@ -134,23 +132,23 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               onSelected: (String result) {},
               itemBuilder: (BuildContext context) => [
                 PopupMenuItem<String>(
-                  child: Text('Home'),
+                  child: const Text('Home'),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MainScreen(initialIndex: 0),
+                        builder: (context) => const MainScreen(initialIndex: 0),
                       ),
                     );
                   },
                 ),
                 PopupMenuItem<String>(
-                  child: Text('My account'),
+                  child: const Text('My account'),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MainScreen(initialIndex: 5),
+                        builder: (context) => const MainScreen(initialIndex: 5),
                       ),
                     );
                   },
@@ -161,13 +159,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -176,7 +174,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -186,7 +184,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -196,40 +194,40 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 children: [
                   Text(
                     productName,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('\৳$_offerPrice', style: TextStyle(fontSize: 30)),
-                      SizedBox(width: 10),
+                      Text('৳$_offerPrice', style: const TextStyle(fontSize: 30)),
+                      const SizedBox(width: 10),
                       Text(
-                        '\৳$_regularPrice',
-                        style: TextStyle(
+                        '৳$_regularPrice',
+                        style: const TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.red,
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Text('1K Sold'),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
+                      const Text('1K Sold'),
+                      const SizedBox(width: 10),
                       Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                             child: Text('♥50'),
                           )),
                     ],
                   ),
-                  SizedBox(height: 8),
-                  Text('Rating: 4.5 stars'),
-                  SizedBox(height: 8),
-                  Text('Delivery Time: 3-5 days'),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
+                  const Text('Rating: 4.5 stars'),
+                  const SizedBox(height: 8),
+                  const Text('Delivery Time: 3-5 days'),
+                  const SizedBox(height: 8),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -244,7 +242,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     },
                     child: Row(
                       children: [
-                        Icon(Icons.store_mall_directory_outlined),
+                        const Icon(Icons.store_mall_directory_outlined),
                         Text(' ${_vendorData?['profile']['storeName'] ?? ''} (Ratings: ${_vendorData?['profile']['ratings'] ?? 0} stars)'),
                       ],
                     ),
@@ -252,7 +250,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
               height: 100,
@@ -265,11 +263,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -280,7 +278,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
               // height: ,
@@ -293,7 +291,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -303,27 +301,27 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'Delivery   ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Image.asset(AssetsLink.approvalIcon, height: 18, color: Colors.deepPurpleAccent.shade700),
-                      Text('  Standard Delivery , 5-7 Days ,  120\৳',style: TextStyle(fontSize: 15),)
+                      const Text('  Standard Delivery , 5-7 Days ,  120৳',style: TextStyle(fontSize: 15),)
                     ],
                   ),
-                  Divider(),
+                  const Divider(),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'Service    ',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Image.asset(AssetsLink.leftArrowInCircleIcon, height: 18, color: Colors.deepPurpleAccent.shade700),
-                      Text('  7 Days Returns.',style: TextStyle(fontSize: 15),),
+                      const Text('  7 Days Returns.',style: TextStyle(fontSize: 15),),
                       SizedBox(
                         width: MediaQuery.of(context).size.width*0.30,
                       ),
-                      Icon(Icons.arrow_forward_ios,size: 18,)
+                      const Icon(Icons.arrow_forward_ios,size: 18,)
                     ],
                   ),
                   // Add delivery info here
@@ -339,7 +337,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             //     ],
             //   ),
             // ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               height: 100,
               width: MediaQuery.of(context).size.width,
@@ -351,12 +349,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               padding: const EdgeInsets.all(16),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -368,9 +366,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               height: 130,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -381,7 +379,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -389,7 +387,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'QNA',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -398,7 +396,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     children: [
                       TextButton(
                         onPressed: () {},
-                        child: Text('Ask Question'),
+                        child: const Text('Ask Question'),
                       ),
                     ],
                   ),
@@ -406,8 +404,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Divider(),
+            const SizedBox(height: 10),
+            const Divider(),
             Container(
               padding: const EdgeInsets.all(16),
               width: MediaQuery.of(context).size.width,
@@ -419,14 +417,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Store Info',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -448,7 +446,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           backgroundImage: NetworkImage(_vendorData?['profile']['storeLogoUrl'] ?? ''),
                           radius: 20,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -463,7 +461,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(16),
               width: MediaQuery.of(context).size.width,
@@ -475,27 +473,27 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Product Details',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   // Add product details from fixed fields
-                  ...fixedFields.map((field) => _buildField(field)).toList(),
+                  ...fixedFields.map((field) => _buildField(field)),
                   // Add product details from additional fields
-                  ...additionalFields.map((field) => _buildField(field)).toList(),
+                  ...additionalFields.map((field) => _buildField(field)),
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -506,7 +504,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
       ),
@@ -530,18 +528,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),
                   );
                 },
-                icon: Icon(Icons.store_mall_directory_outlined),
+                icon: const Icon(Icons.store_mall_directory_outlined),
               ),
-              IconButton(onPressed: () {}, icon: Icon(Icons.chat_outlined)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined)),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Buy Now'),
+                child: const Text('Buy Now'),
               ),
               ElevatedButton(
                 onPressed: _currentUser == null ? null : () {
                   _addToCart(context);
                 },
-                child: Text('Add to Cart'),
+                child: const Text('Add to Cart'),
               ),
             ],
           ),
@@ -571,7 +569,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Product quantity updated in cart')),
+        const SnackBar(content: Text('Product quantity updated in cart')),
       );
     } else {
       // If the product does not exist, add a new cart item
@@ -587,7 +585,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Product added to cart')),
+        const SnackBar(content: Text('Product added to cart')),
       );
     }
   }
@@ -600,7 +598,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         children: [
           Text(
             field['fieldName']+'   : ',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(field['value'].toString()),
         ],

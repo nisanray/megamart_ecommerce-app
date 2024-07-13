@@ -10,26 +10,26 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: const Text('Categories'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('categories').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No categories found.'));
+            return const Center(child: Text('No categories found.'));
           }
 
           var categories = snapshot.data!.docs;
 
           return GridView.builder(
-            padding: EdgeInsets.all(16.0),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            padding: const EdgeInsets.all(16.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 16.0,
               mainAxisSpacing: 16.0,
@@ -56,7 +56,7 @@ class CategoryScreen extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -73,19 +73,19 @@ class CategoryScreen extends StatelessWidget {
                             // fit: BoxFit.cover,
                           ),
                         ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         category['name'],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         category['description'],
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                     ],

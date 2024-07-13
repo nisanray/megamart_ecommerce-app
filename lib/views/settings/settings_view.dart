@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:megamart/views/auth/login_screen.dart';
 import 'account_info_update.dart';
 
@@ -20,7 +21,7 @@ class SettingsView extends StatelessWidget {
             _buildSettingsOption(context, 'Account Information', () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AccountInformationView()),
+                MaterialPageRoute(builder: (context) => const AccountInformationView()),
               );
             }),
             const SizedBox(height: 1),
@@ -91,20 +92,20 @@ class SettingsView extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('Are you sure you want to logout?'),
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 _logout(context);
               },
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         );
@@ -112,11 +113,15 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  void _logout(BuildContext context) {
-    // Add your logout logic here
-    // For example, clear user data, navigate to login screen, etc.
+  void _logout(BuildContext context) async {
+    // Clear user data and set login status to false
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
 
-    // Example:
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LogInScreen(),));
+    // Navigate to the login screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LogInScreen()),
+    );
   }
 }
