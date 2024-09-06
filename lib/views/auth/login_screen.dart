@@ -44,8 +44,9 @@ class _LogInScreenState extends State<LogInScreen> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(15),
+            color: AppColors.backgroundColor.withOpacity(0.08),
             child: Form(
               key: _formKey,
               child: SingleChildScrollView(
