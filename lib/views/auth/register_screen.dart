@@ -66,10 +66,11 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
     }
   }
 
-
-
-
-
+  _togglePasswordVisibility() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -132,86 +133,155 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                           ],
                         ),
                         SizedBox(height: space),
-                        CustomTextFormFields(
-                          onChanged: (value) {
-                            fullName = value;
-                          },
-                          labelText: "Name",
-                          hintText: "Enter your full name.",
+                        _buildTextFormField(
                           controller: TextEditingController(),
-                          maxwidth: 800,
-                          validator: (value) {
+                            labelText: "Name", hintText: "Enter your full name.",
+                            icon: Icons.text_fields,
+                            onChanged: (value) {
+                              fullName = value;
+                            }, validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your full name';
                             }
                             return null;
-                          },
-                        ),
+                          },),
+                        // CustomTextFormFields(
+                        //   onChanged: (value) {
+                        //     fullName = value;
+                        //   },
+                        //   labelText: "Name",
+                        //   hintText: "Enter your full name.",
+                        //   controller: TextEditingController(),
+                        //   maxwidth: 800,
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter your full name';
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
                         SizedBox(height: space),
-                        CustomTextFormFields(
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          labelText: "Email",
-                          hintText: "Enter your email",
-                          controller: TextEditingController(),
-                          maxwidth: 800,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your email';
-                            }
-                            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                              return 'Please enter a valid email.';
-                            }
-                            return null;
-                          },
-                        ),
+                        _buildTextFormField(
+                            controller: TextEditingController(),
+                            labelText: "Email", hintText: "Enter your email",
+                            icon: Icons.email,
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                                return 'Please enter a valid email.';
+                              }
+                              return null;
+                            },),
+                        // CustomTextFormFields(
+                        //   onChanged: (value) {
+                        //     email = value;
+                        //   },
+                        //   labelText: "Email",
+                        //   hintText: "Enter your email",
+                        //   controller: TextEditingController(),
+                        //   maxwidth: 800,
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter your email';
+                        //     }
+                        //     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                        //       return 'Please enter a valid email.';
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
                         SizedBox(height: space),
-                        CustomTextFormFields(
-                          onChanged: (value) {
-                            phoneNumber = value;
-                          },
-                          labelText: "Phone",
-                          hintText: "Enter your phone number",
-                          controller: TextEditingController(),
-                          maxwidth: 800,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your number';
-                            }
-                            if (!RegExp(r'^\+?[0-9]{11,}$').hasMatch(value)) {
-                              return 'Please enter a valid phone number';
-                            }
-                            return null;
-                          },
-                        ),
+                        _buildTextFormField(
+                            controller: TextEditingController(),
+                            labelText: 'Phone',
+                            hintText: 'Enter your phone number',
+                            icon: CupertinoIcons.phone_fill,
+                            onChanged: (value) {
+                              phoneNumber = value;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your number';
+                              }
+                              if (!RegExp(r'^\+?[0-9]{11,}$').hasMatch(value)) {
+                                return 'Please enter a valid phone number';
+                              }
+                              return null;
+                            },),
+                        // CustomTextFormFields(
+                        //   onChanged: (value) {
+                        //     phoneNumber = value;
+                        //   },
+                        //   labelText: "Phone",
+                        //   hintText: "Enter your phone number",
+                        //   controller: TextEditingController(),
+                        //   maxwidth: 800,
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter your number';
+                        //     }
+                        //     if (!RegExp(r'^\+?[0-9]{11,}$').hasMatch(value)) {
+                        //       return 'Please enter a valid phone number';
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
                         SizedBox(height: space),
-                        CustomTextFormFields(
-                          onChanged: (value) {
-                            password = value;
-                          },
-                          labelText: "Password",
-                          hintText: "Create a strong password",
-                          controller: TextEditingController(),
-                          maxwidth: 800,
-                          obscureText: false,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a password';
-                            }
-                            if (value.length < 8) {
-                              return 'Password must be at least 8 characters.';
-                            }
-                            if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$').hasMatch(value)) {
-                              return 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
-                            }
-                            return null;
-                          },
-                        ),
+                        _buildTextFormField(
+                            controller: TextEditingController(),
+                            labelText: 'Password',
+                            hintText: 'Create a strong password',
+                            icon: Icons.lock,
+                            suffixIcon: isPasswordVisible
+                                ? CupertinoIcons.eye
+                                : CupertinoIcons.eye_slash,
+                            suffixIconOnTap: _togglePasswordVisibility,
+                            onChanged: (value) {
+                              password = value;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter a password';
+                              }
+                              if (value.length < 8) {
+                                return 'Password must be at least 8 characters.';
+                              }
+                              if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$').hasMatch(value)) {
+                                return 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+                              }
+                              return null;
+                            },),
+                        // CustomTextFormFields(
+                        //   onChanged: (value) {
+                        //     password = value;
+                        //   },
+                        //   labelText: "Password",
+                        //   hintText: "Create a strong password",
+                        //   controller: TextEditingController(),
+                        //   maxwidth: 800,
+                        //   obscureText: false,
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter a password';
+                        //     }
+                        //     if (value.length < 8) {
+                        //       return 'Password must be at least 8 characters.';
+                        //     }
+                        //     if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$').hasMatch(value)) {
+                        //       return 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
                         SizedBox(height: space),
 
                         CustomButton(
-                          color: AppColors.buttonColor,
+                          color: AppColors.deepPurple,
                           widthPercentage: .5,
                           padding: 10,
                           buttonText: "Register",
@@ -226,14 +296,14 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Already have an account?'),
+                            const Text('Already have an account?',style: TextStyle(fontSize: 15),),
                             TextButton(
                               onPressed: () {
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                                   return const LogInScreen();
                                 }));
                               },
-                              child: const Text('Login'),
+                              child: const Text('Login',style: TextStyle(color: Colors.blueAccent,fontSize: 15),),
                             ),
                           ],
                         ),
@@ -254,4 +324,50 @@ class _CustomerRegistrationScreenState extends State<CustomerRegistrationScreen>
       ),
     );
   }
+  Widget _buildTextFormField({
+    required TextEditingController controller,
+    required String labelText,
+    required String hintText,
+    IconData? icon,
+    bool obscureText = false,
+    IconData? suffixIcon,
+    VoidCallback? suffixIconOnTap,
+    required ValueChanged<String> onChanged,
+    required String? Function(String?)? validator,
+  }) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: icon != null
+            ? Icon(icon, color: Colors.deepPurpleAccent.shade700)
+            : null, // Conditionally add prefixIcon
+        suffixIcon: suffixIcon != null
+            ? IconButton(
+          icon: Icon(suffixIcon),
+          onPressed: suffixIconOnTap,
+          color: Colors.deepPurpleAccent.shade700,
+        )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepPurpleAccent.shade400, width: 1.5),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepPurpleAccent.shade700, width: 2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        labelStyle: TextStyle(color: Colors.deepPurpleAccent.shade700),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      ),
+      onChanged: onChanged,
+      validator: validator,
+    );
+  }
+
 }

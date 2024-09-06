@@ -43,12 +43,14 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Container(
-            padding: const EdgeInsets.all(15),
-            color: AppColors.backgroundColor.withOpacity(0.08),
-            child: Form(
-              key: _formKey,
+        body: Container(
+          padding: const EdgeInsets.all(15),
+          color: AppColors.backgroundColor.withOpacity(0.08),
+          width: MediaQuery.sizeOf(context).width,
+          height:  MediaQuery.sizeOf(context).height,
+          child: Form(
+            key: _formKey,
+            child: Center(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
@@ -111,7 +113,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     const SizedBox(height: 20),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.buttonColor,
+                        backgroundColor: Colors.deepPurpleAccent.shade400,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 50, vertical: 15),
                         textStyle: const TextStyle(
@@ -138,7 +140,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        const Text("Don't have an account?",style: TextStyle(fontSize: 15),),
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -148,7 +150,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                       const CustomerRegistrationScreen()),
                             );
                           },
-                          child: const Text('Register'),
+                          child: const Text('Register',style: TextStyle(color: Colors.blueAccent,fontSize: 15),),
                         ),
                       ],
                     ),
