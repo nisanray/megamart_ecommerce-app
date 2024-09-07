@@ -39,15 +39,15 @@ class SettingsView extends StatelessWidget {
               title: 'Address Book',
               icon: Icons.location_on,
               onTap: () {
-
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
               context,
-              title: 'Notification Settings',
-              icon: Icons.notifications,
+              title: 'Messages',
+              icon: Icons.message,
               onTap: () {
-
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
@@ -55,7 +55,7 @@ class SettingsView extends StatelessWidget {
               title: 'Country',
               icon: Icons.flag,
               onTap: () {
-
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
@@ -63,7 +63,23 @@ class SettingsView extends StatelessWidget {
               title: 'Language',
               icon: Icons.language,
               onTap: () {
-
+                // Add your navigation logic here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Account Security',
+              icon: Icons.lock,
+              onTap: () {
+                // Add your navigation logic here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Notification Settings',
+              icon: Icons.notifications,
+              onTap: () {
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
@@ -71,7 +87,15 @@ class SettingsView extends StatelessWidget {
               title: 'General',
               icon: Icons.settings,
               onTap: () {
-
+                // Add your navigation logic here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Conditions',
+              icon: Icons.rule,
+              onTap: () {
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
@@ -79,7 +103,7 @@ class SettingsView extends StatelessWidget {
               title: 'Policies',
               icon: Icons.policy,
               onTap: () {
-
+                // Add your navigation logic here
               },
             ),
             _buildSettingsOption(
@@ -87,7 +111,23 @@ class SettingsView extends StatelessWidget {
               title: 'Help',
               icon: Icons.help,
               onTap: () {
-
+                // Add your navigation logic here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Feedback',
+              icon: Icons.feedback,
+              onTap: () {
+                // Add your navigation logic here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Request Account Deletion',
+              icon: Icons.delete_forever,
+              onTap: () {
+                // Add your navigation logic here
               },
             ),
             const SizedBox(height: 20),
@@ -125,7 +165,6 @@ class SettingsView extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildLogoutButton(BuildContext context) {
     return InkWell(
