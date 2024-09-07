@@ -10,79 +10,132 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueAccent.withOpacity(0.2),
+        backgroundColor: Colors.grey[100], // Subtle background color
         appBar: AppBar(
-          title: const Text("Settings"),
+          title: const Text(
+            "Settings",
+            style: TextStyle(color: Colors.black), // Black color for title
+          ),
           backgroundColor: Colors.white,
+          elevation: 2, // Slight elevation for shadow effect
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
-        body: Column(
+        body: ListView(
+          padding: const EdgeInsets.all(16), // Add padding around the list
           children: [
-            const SizedBox(height: 10),
-            _buildSettingsOption(context, 'Account Information', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AccountInformationView()),
-              );
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Address Book', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Notification Settings', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Country', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Language', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'General', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Policies', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 1),
-            _buildSettingsOption(context, 'Help', () {
-              // Add your navigation or functionality here
-            }),
-            const SizedBox(height: 20),
-            InkWell(
+            _buildSettingsOption(
+              context,
+              title: 'Account Information',
+              icon: Icons.person,
               onTap: () {
-                _showLogoutConfirmation(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AccountInformationView()),
+                );
               },
-              child: Container(
-                width: MediaQuery.sizeOf(context).width,
-                padding: const EdgeInsets.all(15),
-                color: Colors.white,
-                child: const Center(
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(fontSize: 20, color: Colors.redAccent),
-                  ),
-                ),
-              ),
             ),
+            _buildSettingsOption(
+              context,
+              title: 'Address Book',
+              icon: Icons.location_on,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Notification Settings',
+              icon: Icons.notifications,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Country',
+              icon: Icons.flag,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Language',
+              icon: Icons.language,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'General',
+              icon: Icons.settings,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Policies',
+              icon: Icons.policy,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            _buildSettingsOption(
+              context,
+              title: 'Help',
+              icon: Icons.help,
+              onTap: () {
+                // Add your navigation or functionality here
+              },
+            ),
+            const SizedBox(height: 20),
+            _buildLogoutButton(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSettingsOption(BuildContext context, String title, VoidCallback onTap) {
+  Widget _buildSettingsOption(BuildContext context, {required String title, required IconData icon, required VoidCallback onTap}) {
+    return Card(
+      elevation: 2, // Elevation for a card effect
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10), // Rounded corners
+      ),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.blueAccent), // Icon with accent color
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500), // Font style enhancements
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey), // Arrow icon to indicate navigation
+        onTap: onTap,
+        tileColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Padding inside the tile
+      ),
+    );
+  }
+
+  Widget _buildLogoutButton(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        _showLogoutConfirmation(context);
+      },
       child: Container(
-        width: MediaQuery.sizeOf(context).width,
+        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(15),
-        color: Colors.white,
-        child: Text(title),
+        decoration: BoxDecoration(
+          color: Colors.redAccent,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: Text(
+            'Logout',
+            style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
     );
   }
@@ -99,13 +152,13 @@ class SettingsView extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
             ),
             TextButton(
               onPressed: () {
                 _logout(context);
               },
-              child: const Text('Logout'),
+              child: const Text('Logout', style: TextStyle(color: Colors.red)),
             ),
           ],
         );

@@ -24,7 +24,7 @@ class CustomBottomNavigationItem extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: isSelected ? Colors.blue : Colors.black,
+            color: Colors.blueAccent,
           ),
           Text(
             label,
