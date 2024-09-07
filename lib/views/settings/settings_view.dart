@@ -39,7 +39,7 @@ class SettingsView extends StatelessWidget {
               title: 'Address Book',
               icon: Icons.location_on,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -47,7 +47,7 @@ class SettingsView extends StatelessWidget {
               title: 'Notification Settings',
               icon: Icons.notifications,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -55,7 +55,7 @@ class SettingsView extends StatelessWidget {
               title: 'Country',
               icon: Icons.flag,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -63,7 +63,7 @@ class SettingsView extends StatelessWidget {
               title: 'Language',
               icon: Icons.language,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -71,7 +71,7 @@ class SettingsView extends StatelessWidget {
               title: 'General',
               icon: Icons.settings,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -79,7 +79,7 @@ class SettingsView extends StatelessWidget {
               title: 'Policies',
               icon: Icons.policy,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             _buildSettingsOption(
@@ -87,7 +87,7 @@ class SettingsView extends StatelessWidget {
               title: 'Help',
               icon: Icons.help,
               onTap: () {
-                // Add your navigation or functionality here
+
               },
             ),
             const SizedBox(height: 20),
