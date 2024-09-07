@@ -597,12 +597,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            field['fieldName']+'   : ',
+            '${field['fieldName']}   : ',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          Text(field['value'].toString()),
+          Flexible(
+            child: Text(
+              field['value'].toString(),
+              style: const TextStyle(fontWeight: FontWeight.normal),
+              overflow: TextOverflow.ellipsis, // Handles text overflow
+              maxLines: 2,  // Limits to 2 lines
+            ),
+          ),
         ],
       ),
     );
   }
+
 }

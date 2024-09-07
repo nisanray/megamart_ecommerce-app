@@ -63,13 +63,16 @@ class CategoryScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
                       if (category['categoryImageUrl'] != null)
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16.0),
                           child: Image.network(
                             category['categoryImageUrl'],
                             height: 100,
-                            width: double.infinity,
+                            // width: double.infinity,
                             // fit: BoxFit.cover,
                           ),
                         ),
@@ -83,11 +86,11 @@ class CategoryScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 5),
-                      Text(
-                        category['description'],
-                        style: const TextStyle(fontSize: 14),
-                        textAlign: TextAlign.center,
-                      ),
+                      // Text(
+                      //   category['description'],
+                      //   style: const TextStyle(fontSize: 14),
+                      //   textAlign: TextAlign.center,
+                      // ),
                     ],
                   ),
                 ),
