@@ -203,8 +203,8 @@ class _SearchScreenState extends State<ExtraSearchScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        unselectedItemColor: Colors.deepPurpleAccent.shade400,
-        selectedItemColor: Colors.amberAccent.shade700,
+        unselectedItemColor: Colors.blueGrey,
+        selectedItemColor: Colors.blueAccent.shade700,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

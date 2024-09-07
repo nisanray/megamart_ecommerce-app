@@ -99,10 +99,19 @@ class SettingsView extends StatelessWidget {
   }
 
   Widget _buildSettingsOption(BuildContext context, {required String title, required IconData icon, required VoidCallback onTap}) {
-    return Card(
-      elevation: 2, // Elevation for a card effect
-      shape: RoundedRectangleBorder(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4), // Adds spacing between list items
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10), // Rounded corners
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2), // Light shadow for a subtle elevation effect
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2), // Offset to make the shadow appear below the container
+          ),
+        ],
       ),
       child: ListTile(
         leading: Icon(icon, color: Colors.blueAccent), // Icon with accent color
@@ -112,11 +121,11 @@ class SettingsView extends StatelessWidget {
         ),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey), // Arrow icon to indicate navigation
         onTap: onTap,
-        tileColor: Colors.white,
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Padding inside the tile
       ),
     );
   }
+
 
   Widget _buildLogoutButton(BuildContext context) {
     return InkWell(
