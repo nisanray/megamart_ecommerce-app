@@ -1,0 +1,1052 @@
+{
+  "9DLKIUyLUKiBK8AIXsd9": {
+    "categoryId": "kPnsw2JqBMbBZn5Yqo4z",
+    "createdAt": "2024-09-08T08:48:02.618",
+    "fields": [
+      {
+        "fieldName": "Network Technology",
+        "fieldType": "text",
+        "value": "GSM / CDMA / HSPA / EVDO / LTE / 5G"
+      },
+      {
+        "fieldName": "Launch",
+        "fieldType": "text",
+        "value": "2024, January 17,Available"
+      },
+      {
+        "fieldName": "Build",
+        "fieldType": "text",
+        "value": "Glass front (Corning Gorilla Armor), glass back (Corning Gorilla Armor), titanium frame (grade 2)"
+      },
+      {
+        "fieldName": "Sim",
+        "fieldType": "text",
+        "value": "Nano-SIM and eSIM/ Dual eSIM or Dual SIM (2 Nano-SIMs and eSIM, dual stand-by)"
+      },
+      {
+        "fieldName": "Display Size",
+        "fieldType": "text",
+        "value": "6.8 inches, 113.5 cm2 (~88.5% screen-to-body ratio)"
+      },
+      {
+        "fieldName": "Display Type",
+        "fieldType": "text",
+        "value": "Dynamic LTPO AMOLED 2X, 120Hz, HDR10+, 2600 nits (peak)"
+      },
+      {
+        "fieldName": "Display Resolution",
+        "fieldType": "text",
+        "value": "1440 x 3120 pixels, 19.5:9 ratio (~505 ppi density)"
+      },
+      {
+        "fieldName": "Display Protection",
+        "fieldType": "text",
+        "value": "Corning Gorilla Armor"
+      },
+      {
+        "fieldName": "OS",
+        "fieldType": "text",
+        "value": "Android 14, up to 7 major Android upgrades, One UI 6.1.1"
+      },
+      {
+        "fieldName": "Chipset",
+        "fieldType": "text",
+        "value": "Qualcomm SM8650-AC Snapdragon 8 Gen 3 (4 nm)"
+      },
+      {
+        "fieldName": "CPU",
+        "fieldType": "text",
+        "value": "8-core (1x3.39GHz Cortex-X4 & 3x3.1GHz Cortex-A720 & 2x2.9GHz Cortex-A720 & 2x2.2GHz Cortex-A520)"
+      },
+      {
+        "fieldName": "GPU",
+        "fieldType": "text",
+        "value": "\tAdreno 750 (1 GHz)"
+      },
+      {
+        "fieldName": "Memory Card Slot",
+        "fieldType": "text",
+        "value": "No"
+      },
+      {
+        "fieldName": "RAM,ROM",
+        "fieldType": "text",
+        "value": "256GB 12GB RAM"
+      },
+      {
+        "fieldName": "Main Camera",
+        "fieldType": "text",
+        "value": "Quad: 200 MP, f/1.7, 24mm (wide), 1/1.3\", 0.6µm, multi-directional PDAF, OIS,10 MP, f/2.4, 67mm (telephoto), 1/3.52\", 1.12µm, PDAF, OIS, 3x optical zoom,50 MP, f/3.4, 111mm (periscope telephoto), 1/2.52\", 0.7µm, PDAF, OIS, 5x optical zoom,12 MP, f/2.2, 13mm, 120˚ (ultrawide), 1/2.55\", 1.4µm, dual pixel PDAF, Super Steady video"
+      },
+      {
+        "fieldName": "Main Camera features & Video",
+        "fieldType": "text",
+        "value": "Laser AF, LED flash, auto-HDR, panorama.Video:8K@24/30fps, 4K@30/60/120fps, 1080p@30/60/240fps, HDR10+, stereo sound rec., gyro-EIS"
+      },
+      {
+        "fieldName": "Selfie Camera",
+        "fieldType": "text",
+        "value": "12 MP, f/2.2, 26mm (wide), dual pixel PDAF"
+      },
+      {
+        "fieldName": "Selfie Camera features & Video",
+        "fieldType": "text",
+        "value": "Dual video call, Auto-HDR, HDR10+,Video:\t4K@30/60fps, 1080p@30fps"
+      },
+      {
+        "fieldName": "LoudSpeaker",
+        "fieldType": "text",
+        "value": "Yes, with stereo speakers"
+      },
+      {
+        "fieldName": "3.5mm jack",
+        "fieldType": "text",
+        "value": "No"
+      },
+      {
+        "fieldName": "WLAN",
+        "fieldType": "text",
+        "value": "Wi-Fi 802.11 a/b/g/n/ac/6e/7, tri-band, Wi-Fi Direct"
+      },
+      {
+        "fieldName": "Bluetooth",
+        "fieldType": "text",
+        "value": "5.3, A2DP, LE"
+      },
+      {
+        "fieldName": "Positioning",
+        "fieldType": "text",
+        "value": "GPS, GLONASS, BDS, GALILEO, QZSS"
+      },
+      {
+        "fieldName": "NFC",
+        "fieldType": "text",
+        "value": "Yes"
+      },
+      {
+        "fieldName": "Radio",
+        "fieldType": "text",
+        "value": "\tNo"
+      },
+      {
+        "fieldName": "USB",
+        "fieldType": "text",
+        "value": "USB Type-C 3.2, DisplayPort 1.2, OTG"
+      },
+      {
+        "fieldName": "Sensors",
+        "fieldType": "text",
+        "value": "Fingerprint (under display, ultrasonic), accelerometer, gyro, proximity, compass, barometer"
+      },
+      {
+        "fieldName": "Battery Type",
+        "fieldType": "text",
+        "value": "Li-Ion 5000 mAh, non-removable"
+      },
+      {
+        "fieldName": "Battery Charging",
+        "fieldType": "text",
+        "value": "45W wired, PD3.0, 65% in 30 min (advertised)"
+      },
+      {
+        "fieldName": "\tColors",
+        "fieldType": "text",
+        "value": "Titanium Black"
+      },
+      {
+        "fieldName": "Models",
+        "fieldType": "text",
+        "value": "null"
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Samsung Galaxy S24 Ultra"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "1500000"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "1250000"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "20"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "162.3 x 79 x 8.6 mm (6.39 x 3.11 x 0.34 in)"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "232g or 233g (8.18 oz)"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Samsung"
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "Korea"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "23456789"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-10 days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-08T08%3A47%3A58.312083.jpg?alt=media&token=a4e7ebaa-1c00-4d7e-8383-c73e3d575dc8"
+      }
+    ],
+    "updatedAt": "2024-09-08T08:48:02.618",
+    "vendorId": "C82pxrpVenV7mWN1U23uT18p7Kv2"
+  },
+  "9n1VYDzElzJN3mivsoG5": {
+    "categoryId": "kPnsw2JqBMbBZn5Yqo4z",
+    "createdAt": "2024-09-07T22:50:09.149",
+    "fields": [
+      {
+        "fieldName": "Network Technology",
+        "fieldType": "text",
+        "value": "GSM / CDMA / HSPA / EVDO / LTE / 5G"
+      },
+      {
+        "fieldName": "Launch",
+        "fieldType": "text",
+        "value": "2024, September,Available"
+      },
+      {
+        "fieldName": "Build",
+        "fieldType": "text",
+        "value": "Glass front (Corning-made glass), glass back (Corning-made glass), titanium frame (grade 5)"
+      },
+      {
+        "fieldName": "Sim",
+        "fieldType": "text",
+        "value": "Nano-SIM and eSIM - International\r,Dual eSIM with multiple numbers - USA,\rDual SIM (Nano-SIM, dual stand-by) - China"
+      },
+      {
+        "fieldName": "Display Size",
+        "fieldType": "text",
+        "value": "6.9 inches, 116.3 cm2 (~92.0% screen-to-body ratio)"
+      },
+      {
+        "fieldName": "Display Type",
+        "fieldType": "text",
+        "value": "LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision"
+      },
+      {
+        "fieldName": "Display Resolution",
+        "fieldType": "text",
+        "value": "1328 x 2878 pixels, 19.5:9 ratio (~460 ppi density)"
+      },
+      {
+        "fieldName": "Display Protection",
+        "fieldType": "text",
+        "value": "Ceramic Shield glass"
+      },
+      {
+        "fieldName": "OS",
+        "fieldType": "text",
+        "value": "iOS 18"
+      },
+      {
+        "fieldName": "Chipset",
+        "fieldType": "text",
+        "value": "Apple A18 Pro (3 nm)"
+      },
+      {
+        "fieldName": "CPU",
+        "fieldType": "text",
+        "value": "Hexa-core"
+      },
+      {
+        "fieldName": "GPU",
+        "fieldType": "text",
+        "value": "Apple GPU"
+      },
+      {
+        "fieldName": "Memory Card Slot",
+        "fieldType": "text",
+        "value": "No"
+      },
+      {
+        "fieldName": "RAM,ROM",
+        "fieldType": "text",
+        "value": "256GB 8GB RAM, 512GB 8GB RAM, 1TB 8GB RAM,type nvme"
+      },
+      {
+        "fieldName": "Main Camera",
+        "fieldType": "text",
+        "value": "Triple:48 MP, f/1.8, 24mm (wide), 1/1.28\", 1.22µm, dual pixel PDAF, sensor-shift OIS,12 MP, f/2.8, 120mm (periscope telephoto), 1/3.06\", 1.12µm, dual pixel PDAF, 3D sensor‑shift OIS, 5x optical zoom,48 MP, (ultrawide), 0.7µm, dual pixel PDAF,\rTOF 3D LiDAR scanner (depth)"
+      },
+      {
+        "fieldName": "Main Camera features & Video",
+        "fieldType": "text",
+        "value": "Dual-LED dual-tone flash, HDR (photo/panorama),4K@24/25/30/60fps, 1080p@25/30/60/120/240fps, 10-bit HDR, Dolby Vision HDR (up to 60fps), ProRes, 3D (spatial) video, stereo sound rec."
+      },
+      {
+        "fieldName": "Selfie Camera",
+        "fieldType": "text",
+        "value": "Single:12 MP, f/1.9, 23mm (wide), 1/3.6\", PDAF, OIS\rSL 3D, (depth/biometrics sensor)"
+      },
+      {
+        "fieldName": "Selfie Camera features & Video",
+        "fieldType": "text",
+        "value": "HDR,4K@24/25/30/60fps, 1080p@25/30/60/120fps, gyro-EIS"
+      },
+      {
+        "fieldName": "LoudSpeaker",
+        "fieldType": "text",
+        "value": "Yes, with stereo speakers"
+      },
+      {
+        "fieldName": "3.5mm jack",
+        "fieldType": "text",
+        "value": "No"
+      },
+      {
+        "fieldName": "WLAN",
+        "fieldType": "text",
+        "value": "Wi-Fi 802.11 a/b/g/n/ac/6e/7, dual-band, hotspot"
+      },
+      {
+        "fieldName": "Bluetooth",
+        "fieldType": "text",
+        "value": "5.4, A2DP, LE"
+      },
+      {
+        "fieldName": "Positioning",
+        "fieldType": "text",
+        "value": "GPS (L1+L5), GLONASS, GALILEO, BDS, QZSS, NavIC"
+      },
+      {
+        "fieldName": "NFC",
+        "fieldType": "text",
+        "value": "Yes"
+      },
+      {
+        "fieldName": "Radio",
+        "fieldType": "text",
+        "value": "No"
+      },
+      {
+        "fieldName": "USB",
+        "fieldType": "text",
+        "value": "USB Type-C 3.2 Gen 2, DisplayPort"
+      },
+      {
+        "fieldName": "Sensors",
+        "fieldType": "text",
+        "value": "Face ID, accelerometer, gyro, proximity, compass, barometer"
+      },
+      {
+        "fieldName": "Battery Type",
+        "fieldType": "text",
+        "value": "Li-Ion 4676 mAh, non-removable"
+      },
+      {
+        "fieldName": "Battery Charging",
+        "fieldType": "text",
+        "value": "Wired, PD2.0, 50% in 30 min (advertised)"
+      },
+      {
+        "fieldName": "\tColors",
+        "fieldType": "text",
+        "value": "Black Titanium, White Titanium, Blue Titanium, Natural Titanium"
+      },
+      {
+        "fieldName": "Models",
+        "fieldType": "text",
+        "value": "16 Pro Max"
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Apple iPhone 16 Pro Max"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "1800000"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "1750000"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "20"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "163 x 77.6 x 8.3 mm (6.42 x 3.06 x 0.33 in)"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "225 g (7.94 oz)"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Apple"
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "China"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "234567432"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "All Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-8 Days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-07T22%3A50%3A05.003055.jpg?alt=media&token=881a91db-1d0b-4f38-9b99-5899b4d8ae1d"
+      }
+    ],
+    "updatedAt": "2024-09-07T22:51:31.365",
+    "vendorId": "C82pxrpVenV7mWN1U23uT18p7Kv2"
+  },
+  "QvtaCKHS6o9uXNdFjA87": {
+    "categoryId": "uQsxhEMi5Yxkv7arcBE8",
+    "createdAt": "2024-09-08T09:08:40.949",
+    "fields": [
+      {
+        "fieldName": "Processor",
+        "fieldType": "text",
+        "value": "Exynos W920 (Dualcore, 5nm)"
+      },
+      {
+        "fieldName": "Display Size & Resolution",
+        "fieldType": "text",
+        "value": "1.4\" (34.6mm) ,450x450px Display"
+      },
+      {
+        "fieldName": "Screen Type",
+        "fieldType": "text",
+        "value": "Circular Super AMOLED "
+      },
+      {
+        "fieldName": "Touch type",
+        "fieldType": "text",
+        "value": "Capacitive"
+      },
+      {
+        "fieldName": "RAM",
+        "fieldType": "text",
+        "value": "1.5GB"
+      },
+      {
+        "fieldName": "ROM",
+        "fieldType": "text",
+        "value": "16GB"
+      },
+      {
+        "fieldName": "Battery Type",
+        "fieldType": "text",
+        "value": "Li-Po"
+      },
+      {
+        "fieldName": "Battery Capacity",
+        "fieldType": "text",
+        "value": "410mAh"
+      },
+      {
+        "fieldName": "Protection IC",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Charging method",
+        "fieldType": "text",
+        "value": "Magnetic"
+      },
+      {
+        "fieldName": "Charging time",
+        "fieldType": "text",
+        "value": "45 Minutes"
+      },
+      {
+        "fieldName": "Using time",
+        "fieldType": "text",
+        "value": "65 Hours+"
+      },
+      {
+        "fieldName": "Connectivity",
+        "fieldType": "text",
+        "value": "Location Technology: GPS, Glonass, Beidou, Galileo\r...Wi-Fi: 802.11 a/b/g/n 2.4+5GHz\r...NFC: Yes...\rBluetooth Version: Bluetooth v5.2...\rBluetooth Profiles: A2DP,AVRCP,HFP,HSP"
+      },
+      {
+        "fieldName": "Material",
+        "fieldType": "text",
+        "value": "TPU"
+      },
+      {
+        "fieldName": "OS",
+        "fieldType": "text",
+        "value": "Android Wear OS 5, One UI Watch 6"
+      },
+      {
+        "fieldName": "SpecialFeatures",
+        "fieldType": "text",
+        "value": "5ATM/ IP68/ MIL-STD-810H..\rMic., Speaker, Motor, Touch Bezel"
+      },
+      {
+        "fieldName": "Sensors",
+        "fieldType": "text",
+        "value": "Accelerometer, Barometer, Bioelectrical Impedance Analysis Sensor, Electrical Heart Sensor, Gyro Sensor, Geomagnetic Sensor, Light Sensor, Optical Heart Rate Sensor"
+      },
+      {
+        "fieldName": "Others",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Color",
+        "fieldType": "text",
+        "value": "White"
+      },
+      {
+        "fieldName": "Warranty",
+        "fieldType": "text",
+        "value": "No Warranty"
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Samsung Galaxy Watch5 44mm Smart Watch"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "21500"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "19400"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "10"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "43.3 x 44.4 x 9.8 mm"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "33.5 g"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Samsung "
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "Korea"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "23456789"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-10 days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-08T09%3A08%3A36.767136.jpg?alt=media&token=e14156f9-f198-4711-bd0e-5720c09d5556"
+      }
+    ],
+    "updatedAt": "2024-09-08T09:08:40.949",
+    "vendorId": "C82pxrpVenV7mWN1U23uT18p7Kv2"
+  },
+  "RdNiNL3PkesSqGnP3jDb": {
+    "categoryId": "Ql3hkdRcpAD6kOVtATEP",
+    "createdAt": "2024-09-08T09:23:34.193",
+    "fields": [
+      {
+        "fieldName": "Type",
+        "fieldType": "text",
+        "value": "Mechanical"
+      },
+      {
+        "fieldName": "Interface",
+        "fieldType": "text",
+        "value": "2.4G wireless and Bluetooth 5.0 and USB-C wired"
+      },
+      {
+        "fieldName": "Keys",
+        "fieldType": "text",
+        "value": "96 Keys"
+      },
+      {
+        "fieldName": "Switch Color",
+        "fieldType": "text",
+        "value": "Blue Switch"
+      },
+      {
+        "fieldName": "Switch Lifecycle",
+        "fieldType": "text",
+        "value": "50 million"
+      },
+      {
+        "fieldName": "Lighting",
+        "fieldType": "text",
+        "value": "RGB"
+      },
+      {
+        "fieldName": "System Requirements",
+        "fieldType": "text",
+        "value": "Windoes XP/Vista/7/8/10 Bluetooth adapter, IOS, Marco, Linux, Android"
+      },
+      {
+        "fieldName": "Color",
+        "fieldType": "text",
+        "value": "Forest Blue"
+      },
+      {
+        "fieldName": "Others",
+        "fieldType": "text",
+        "value": "Warranty:\r1 Year"
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Royal Kludge RK96 RGB Hot-Swappable Tri-Mode Blue Switch Wireless Mechanical Keyboard"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "8,250"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "7,500"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "15"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "14.8 x 4.9 x 1.5 Inch"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "3lbs (1400g)"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Royal Kludge"
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "Korea"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "123456768"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-10 days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-08T09%3A23%3A27.239242.jpg?alt=media&token=bbd9568e-2e65-4f65-bb7f-0b3912ad319d"
+      }
+    ],
+    "updatedAt": "2024-09-08T09:23:34.193",
+    "vendorId": "2wDue0DRv5eztQ819jLskMIM4z82"
+  },
+  "oUNRf80PBKArPqOg6vnP": {
+    "categoryId": "uQsxhEMi5Yxkv7arcBE8",
+    "createdAt": "2024-09-08T08:59:16.383",
+    "fields": [
+      {
+        "fieldName": "Processor",
+        "fieldType": "text",
+        "value": "Qualcomm Snapdragon W5+ Gen 1 Platform"
+      },
+      {
+        "fieldName": "Display Size & Resolution",
+        "fieldType": "text",
+        "value": "1.43 inch AMOLED\r..Resolution: 466x 466 pixels, 326 PPI..\rBrightness: up to 600 nits"
+      },
+      {
+        "fieldName": "Screen Type",
+        "fieldType": "text",
+        "value": "AMOLED"
+      },
+      {
+        "fieldName": "Touch type",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "RAM",
+        "fieldType": "text",
+        "value": "2GB RAM"
+      },
+      {
+        "fieldName": "ROM",
+        "fieldType": "text",
+        "value": "32GB"
+      },
+      {
+        "fieldName": "Battery Type",
+        "fieldType": "text",
+        "value": "Li-Po"
+      },
+      {
+        "fieldName": "Battery Capacity",
+        "fieldType": "text",
+        "value": "495mAh"
+      },
+      {
+        "fieldName": "Protection IC",
+        "fieldType": "text",
+        "value": "null"
+      },
+      {
+        "fieldName": "Charging method",
+        "fieldType": "text",
+        "value": " Magnetic charging"
+      },
+      {
+        "fieldName": "Charging time",
+        "fieldType": "text",
+        "value": "Approximately 45 minutes"
+      },
+      {
+        "fieldName": "Using time",
+        "fieldType": "text",
+        "value": " up to 65 hours"
+      },
+      {
+        "fieldName": "Connectivity",
+        "fieldType": "text",
+        "value": "2.4GHz/5GHz Wi-Fi,\rBluetooth 5.2"
+      },
+      {
+        "fieldName": "Material",
+        "fieldType": "text",
+        "value": "Band Strap: TPU"
+      },
+      {
+        "fieldName": "OS",
+        "fieldType": "text",
+        "value": "Wear OS by Google"
+      },
+      {
+        "fieldName": "SpecialFeatures",
+        "fieldType": "text",
+        "value": "Heart rate chip: LC09,\rWaterproof level: IP68"
+      },
+      {
+        "fieldName": "Sensors",
+        "fieldType": "text",
+        "value": "Optical heart rate sensor,\rAccelerometer sensor\r,Gyroscope sensor\r,Ambient light sensor,\rElectronic compass sensor,\rBarometer sensor"
+      },
+      {
+        "fieldName": "Others",
+        "fieldType": "text",
+        "value": "Mi Fitness (app version 3.26.0i and above)"
+      },
+      {
+        "fieldName": "Color",
+        "fieldType": "text",
+        "value": "Silver"
+      },
+      {
+        "fieldName": "Warranty",
+        "fieldType": "text",
+        "value": "1 Year warranty"
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Xiaomi Redmi Watch 3 Active Bluetooth Calling Smart Watch"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "10000"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "8500"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "20"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "46.94 x 38.88 x 10.94mm..Strap Size:135～200mm"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "41.67g (with inbox strap)"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Xiaomi"
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "China"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "3345678"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-10 days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-08T08%3A59%3A11.708023.jpg?alt=media&token=33ed981c-b25e-4746-ad54-9af729b33046"
+      }
+    ],
+    "updatedAt": "2024-09-08T08:59:16.383",
+    "vendorId": "C82pxrpVenV7mWN1U23uT18p7Kv2"
+  },
+  "rG6bPTZlpJDzu2HZoQk1": {
+    "categoryId": "Ql3hkdRcpAD6kOVtATEP",
+    "createdAt": "2024-09-08T09:34:19.634",
+    "fields": [
+      {
+        "fieldName": "Type",
+        "fieldType": "text",
+        "value": "Mechanical"
+      },
+      {
+        "fieldName": "Interface",
+        "fieldType": "text",
+        "value": "Wired,35% Ultra Thin Board"
+      },
+      {
+        "fieldName": "Keys",
+        "fieldType": "text",
+        "value": "84"
+      },
+      {
+        "fieldName": "Switch Color",
+        "fieldType": "text",
+        "value": "Low Profile Red Switch"
+      },
+      {
+        "fieldName": "Switch Lifecycle",
+        "fieldType": "text",
+        "value": "50million"
+      },
+      {
+        "fieldName": "Lighting",
+        "fieldType": "text",
+        "value": "RGB"
+      },
+      {
+        "fieldName": "System Requirements",
+        "fieldType": "text",
+        "value": " Windows and Mac"
+      },
+      {
+        "fieldName": "Color",
+        "fieldType": "text",
+        "value": "Grey"
+      },
+      {
+        "fieldName": "Others",
+        "fieldType": "text",
+        "value": ".."
+      }
+    ],
+    "fixedFields": [
+      {
+        "fieldName": "Product Name",
+        "fieldType": "text",
+        "value": "Redragon AZURE K652 84 Key RGB Mechanical Gaming Keyboard\r"
+      },
+      {
+        "fieldName": "Description",
+        "fieldType": "text",
+        "value": ".."
+      },
+      {
+        "fieldName": "Regular Price",
+        "fieldType": "number",
+        "value": "8500"
+      },
+      {
+        "fieldName": "Offer Price",
+        "fieldType": "number",
+        "value": "7500"
+      },
+      {
+        "fieldName": "Stock",
+        "fieldType": "number",
+        "value": "5"
+      },
+      {
+        "fieldName": "Dimensions (L x W x H)",
+        "fieldType": "text",
+        "value": "Dimension\r40.4 x 40.4 x 9.7 mm"
+      },
+      {
+        "fieldName": "Weight",
+        "fieldType": "number",
+        "value": "1kg"
+      },
+      {
+        "fieldName": "Manufacturer Name",
+        "fieldType": "text",
+        "value": "Redragon "
+      },
+      {
+        "fieldName": "Manufacturer Address",
+        "fieldType": "text",
+        "value": "China"
+      },
+      {
+        "fieldName": "Manufacturer Contact Number",
+        "fieldType": "text",
+        "value": "23454657575"
+      },
+      {
+        "fieldName": "Shipping Available Regions",
+        "fieldType": "text",
+        "value": "Bangladesh"
+      },
+      {
+        "fieldName": "Estimated Delivery Time",
+        "fieldType": "text",
+        "value": "6-10 days"
+      },
+      {
+        "fieldName": "Product Image URL",
+        "fieldType": "text",
+        "value": "https://firebasestorage.googleapis.com/v0/b/megamart-final-37680.appspot.com/o/product_images%2F2024-09-08T09%3A34%3A49.559526.jpg?alt=media&token=bfe262da-43d4-411d-8bea-0323a61701f4"
+      }
+    ],
+    "updatedAt": "2024-09-08T09:34:53.774",
+    "vendorId": "2wDue0DRv5eztQ819jLskMIM4z82"
+  }
+}
